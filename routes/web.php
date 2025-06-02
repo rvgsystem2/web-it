@@ -64,6 +64,23 @@ Route::middleware('auth')->group(function () {
     Route::post('/user/permissions/{user}', [UserController::class, 'assignPermissionToUser'])->name('user.assign-permission');
 
 
+    Route::controller(\App\Http\Controllers\CategoryController::class)->name('category.')->prefix('category')->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::get('edit/{category}', 'edit')->name('edit');
+        Route::post('update/{category}', 'update')->name('update');
+        Route::post('delete/{category}', 'delete')->name('delete');
+    });
+
+    Route::controller(\App\Http\Controllers\JobController::class)->name('job.')->prefix('job')->group(function(){
+       Route::get('/', 'index')->name('index');
+       Route::get('create', 'create')->name('create');
+       Route::post('store', 'store')->name('store');
+       Route::get('edit/{job}', 'edit')->name('edit');
+       Route::post('update/{job}', 'update')->name('update');
+       Route::post('delete/{job}', 'delete')->name('delete');
+    });
 
 
 
