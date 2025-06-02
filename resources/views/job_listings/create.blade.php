@@ -44,35 +44,13 @@
                     </div>
 
                     <!-- Skills / Keywords -->
-                    <div x-data="tagInput()" class="w-full">
-                        <label class="block text-gray-700 font-medium mb-2">Required Skills / Keywords</label>
 
-                        <!-- Hidden input to store skills as CSV -->
-                        <input type="hidden" name="skills" :value="skills.join(',')" />
-
-                        <!-- Tag display + input -->
-                        <div class="flex flex-wrap border rounded-lg px-3 py-2 focus-within:ring focus-within:ring-blue-200">
-                            <template x-for="(tag, index) in skills" :key="index">
-            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-sm mr-2 mb-2 flex items-center">
-                <span x-text="tag"></span>
-                <button type="button" class="ml-1 text-blue-500 hover:text-blue-700" @click="removeTag(index)">×</button>
-            </span>
-                            </template>
-
-                            <input
-                                x-model="input"
-                                @keydown.space.prevent="addTag()"
-                                @keydown.enter.prevent="addTag()"
-                                type="text"
-                                placeholder="Type and press space"
-                                class="flex-grow border-none focus:outline-none text-sm"
-                            />
-                        </div>
-
-                        <small class="text-gray-500">Press space to add a skill keyword</small>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Job Description</label>
+                        <textarea name="keywords" rows="2"
+                                  class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
+                                  placeholder="Enter job keywords" required>{{ old('keywords', $job->keywords ?? '') }}</textarea>
                     </div>
-
-
 
                     <!-- Location -->
                     <div>

@@ -527,6 +527,9 @@
                             <span><i class="fas fa-map-marker-alt"></i> {{$job->location}}</span>
                             <span><i class="fas fa-briefcase"></i> {{$job->job_type}}</span>
                             <span><i class="fas fa-clock"></i> {{$job->created_at->diffForHumans()}}</span>
+                            @if($job->salary_range)
+                                <span><i class="fas fa-clock"></i> {{$job->salary_range}}</span>
+                            @endif
                         </div>
                         <p>{!! $job->description !!}</p>
                         <a href="{{route('applyForJob', ['job'=> $job->id])}}" class="btn">Apply Now</a>

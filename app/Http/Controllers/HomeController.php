@@ -29,13 +29,6 @@ class HomeController extends Controller
         return view('frontend.career', compact('categories', 'jobs'));
    }
 
-    public function careerByCategory(Category $category)
-    {
-        $categories = Category::all();
-        $jobs = JobListing::where('category_id', $category->id)->get();
-
-        return view('frontend.career', compact('categories', 'jobs'));
-    }
    public function about(){
     return view('frontend.about');
    }
