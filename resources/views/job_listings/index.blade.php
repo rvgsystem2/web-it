@@ -45,7 +45,7 @@
                         <tbody class="bg-white divide-y divide-gray-100">
                         @forelse ($jobs as $job)
                             <tr class="hover:bg-gray-50 transition">
-                                <td class="px-6 py-4 font-medium text-gray-800">{{ $job->id }}</td>
+                                <td class="px-6 py-4 font-medium text-gray-800">{{ $job->job_id }}</td>
                                 <td class="px-6 py-4 text-gray-700">{{ $job->title }}</td>
                                 <td class="px-6 py-4 text-gray-600">{{ $job->location }}</td>
                                 <td class="px-6 py-4 text-gray-600 capitalize">{{ $job->job_type }}</td>

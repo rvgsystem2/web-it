@@ -47,9 +47,9 @@
 
                     <div>
                         <label class="block text-gray-700 font-medium mb-2">Skills keyword</label>
-                        <textarea name="keywords" rows="2"
+                        <textarea name="skills" rows="2"
                                   class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
-                                  placeholder="Enter job keywords" required>{{ old('keywords', $job->keywords ?? '') }}</textarea>
+                                  placeholder="Enter job skills" required>{{ old('skills', $job->skills ?? '') }}</textarea>
                     </div>
 
                     <!-- Location -->
@@ -65,7 +65,7 @@
 
                         <div>
                             <label class="block text-gray-700 font-medium mb-2">Salary Range</label>
-                            <input type="number" name="salary_min"
+                            <input type="text" name="salary_range"
                                    value="{{ old('salary_range', $job->salary_range ?? '') }}"
                                    class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
                                    placeholder="Salary Range" required>

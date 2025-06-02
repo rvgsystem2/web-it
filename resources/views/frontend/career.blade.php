@@ -508,7 +508,7 @@
             </div>
 
             <form action="{{route('career')}}">
-                <input type="hidden" name="slug" placeholder="Keywords" >
+                <input type="text" name="keywords" placeholder="Keywords" >
                 <button type="submit"  class="filter-btn" data-filter="engineering">Search</button>
             </form>
             <div class="position-filter">

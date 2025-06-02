@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\JobListing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class JobController extends Controller
 {
@@ -29,13 +30,21 @@ class JobController extends Controller
             'description' => 'required',
             'location' => 'required|string|max:255',
             'salary_range' => 'nullable',
-
+            'skills' => 'nullable',
             'job_type' => 'required|in:full-time,part-time,internship',
             'category_id' => 'nullable|exists:categories,id',
             'deadline' => 'required|date|after:today',
         ]);
 
-        JobListing::create($request->all());
+        $jobId = 'JOB' . now()->format('ymdHis') . Str::upper(Str::random(4));
+
+        // Create job with job_id
+        $jobData = $request->all();
+        $jobData['job_id'] = $jobId;
+
+
+        JobListing::create($jobData);
+
 
         return redirect()->route('job.index')->with('success', 'Job listing created successfully.');
     }

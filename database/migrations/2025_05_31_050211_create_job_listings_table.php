@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('job_listings', function (Blueprint $table) {
             $table->id();
+            $table->string('job_id');
             $table->string('title');
             $table->text('description');
             $table->string('location');
             $table->text('skills')->nullable();
-            $table->string('salary_range');
+            $table->string('salary_range')->nullable();
             $table->enum('job_type', ['full-time', 'part-time', 'internship']);
             $table->foreignId('category_id')->nullable()->constrained('categories')->onDelete('set null');
             $table->date('deadline');
