@@ -1,48 +1,10 @@
 @extends('component.main')
 @section('content')
 
+
 <!-- Navbar & Carousel Start -->
     <div class="container-fluid position-relative p-0">
-        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
-            <a href="/" class="navbar-brand p-0">
-                <h1 class="m-0"><i class=" me-2"></i>Cybrexus</h1>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto py-0">
-                    <a href="/" class="nav-item nav-link active">Home</a>
-
-                   <!-- <a href="service.html" class="nav-item nav-link">Services</a>-->
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="" class="dropdown-item">App Development</a>
-                            <a href="" class="dropdown-item">Business Solution</a>
-                            <a href="" class="dropdown-item">Business Process</a>
-                            <a href="" class="dropdown-item">Cyber Security</a>
-                            <a href="" class="dropdown-item">Web Development</a>
-                            <a href="" class="dropdown-item">Interior & Exterior Design</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="faq.html" class="dropdown-item">FAQ</a>
-                            <a href="Career.php" class="dropdown-item">Career page</a>
-                            <a href="#" class="dropdown-item">Blog</a>
-                            <a href="aboutus.php" class="dropdown-item">About</a>
-
-                        </div>
-                    </div>
-                    <a href="Contact_us.php" class="nav-item nav-link">Contact</a>
-
-                </div>
-                <!--<butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
-                <a href="#" class="btn btn-primary py-2 px-4 ms-3">Login</a>-->
-            </div>
-        </nav>
+        
 
         <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -117,7 +79,7 @@
                 <div class="col-lg-6 wow slideInUp" data-wow-delay="0.3s">
                     <!-- FormSPark to collect the information -->
 
-                     <form action="https://submit-form.com/tNkFVGl1u" method="post">
+                     <form action="#" method="post">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <input type="text" name="name" class="form-control border-0 bg-light px-4" placeholder="Your Name" style="height: 55px;">
@@ -407,9 +369,5 @@
 
   <!--========================
     CONTACT DETAILS END
-  ========================-->
-
-
-
 
 @endsection

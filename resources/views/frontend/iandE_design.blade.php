@@ -31,39 +31,52 @@
 
 
 <!--=====App PAGE START=====-->
-<section class="wsus__property_page mt_45 mb_45">
-  <div class="container">
-    <div class="row">
-      <div class="col-xl-8">
-        <div class="row">
-          <div class="col-12">
-            <div class="wsus__property_topbar d-flex justify-content-between mb-4">
-              <ul class="nav nav-pills" id="pills-tab" role="tablist">
+<section class="wsus__property_page mt-5 mb-5">
+    <div class="container">
+      <div class="row">
+        <!-- Main content column -->
+        <div class="col-12 col-xl-8">
+          <div class="row">
+            <div class="col-12">
+              <!-- Top bar -->
+              <div class="wsus__property_topbar d-flex justify-content-between align-items-center mb-4 flex-wrap">
+                <ul class="nav nav-pills mb-2 mb-md-0" id="pills-tab" role="tablist">
+                  <!-- Tabs go here -->
+                </ul>
+              </div>
+            </div>
 
+            <!-- Floor/Elevation Images -->
+            <div class="col-12">
+              <div class="row g-4">
+                <div class="col-12 col-md-6 col-lg-4">
+                  <img src="{{ asset('asset/img/first_floor.jpg') }}" alt="First Floor Plan" class="img-fluid rounded shadow-sm w-100 h-auto">
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <img src="{{ asset('asset/img/Northelevation.jpg') }}" alt="North Elevation" class="img-fluid rounded shadow-sm w-100 h-auto">
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <img src="{{ asset('asset/img/Ground_floor.jpg') }}" alt="Ground Floor Plan" class="img-fluid rounded shadow-sm w-100 h-auto">
+                </div>
+              </div>
+            </div>
 
-              </ul>
+            <!-- Pagination -->
+            <div class="col-12 mt-5">
+              <div class="wsus__pagination d-flex justify-content-center">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+                    <!-- Pagination items go here -->
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div> <!-- inner row -->
+        </div> <!-- col-xl-8 -->
+      </div> <!-- row -->
+    </div> <!-- container -->
+  </section>
 
-                <img src="{{asset('asset/img/first_floor.jpg')}}" alt="First Floor Plan" width="400" height="500">
-                <img src="{{asset('asset/img/Northelevation.jpg')}}" alt="North Elevation" width="400" height="500">
-                <img src="{{asset('asset/img/Ground_floor.jpg')}}" alt="Ground Floor Plan" width="400" height="500">
-
-
-
-
-
-                    <div class="col-12">
-            <div class="wsus__pagination d-flex justify-content-center">
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-
-      </ul>
-    </nav>
-  </div>
-
-      </div>
-    </div>
-  </div>
-</section>
 <!--=====App PAGE END=====-->
 
 <script>
