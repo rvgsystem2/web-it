@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('location');
-            $table->integer('salary_min');
-            $table->integer('salary_max');
+            $table->text('skills')->nullable();
+            $table->string('salary_range');
             $table->enum('job_type', ['full-time', 'part-time', 'internship']);
             $table->foreignId('category_id')->nullable()->constrained('categories')->onDelete('set null');
             $table->date('deadline');

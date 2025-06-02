@@ -48,4 +48,8 @@ class HomeController extends Controller
    public function applyForJob(JobListing $job){
     return view('frontend.applyForJob', compact('job'));
    }
+
+   public function profile(){
+        return view('frontend.profile');
+   }
 }

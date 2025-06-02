@@ -59,42 +59,9 @@ class JobApplicationController extends Controller
         return view('applications.show', compact('application'));
     }
 
-    // Show form to edit existing application
-    public function edit($id)
-    {
-        $application = JobApplication::findOrFail($id);
-        $jobs = Job::all();
-        $users = User::all();
-        return view('job_applications.edit', compact('application', 'jobs', 'users'));
-    }
-
-    // Update an application
-    public function update(Request $request, $id)
-    {
-        $application = JobApplication::findOrFail($id);
-
-        $request->validate([
-            'status' => 'in:applied,shortlisted,rejected,hired',
-            'cover_letter' => 'nullable|string',
-            'resume' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
-        ]);
-
-        if ($request->hasFile('resume')) {
-            if ($application->resume) {
-                Storage::disk('public')->delete($application->resume);
-            }
-            $application->resume = $request->file('resume')->store('resumes', 'public');
-        }
-
-        $application->status = $request->status ?? $application->status;
-        $application->cover_letter = $request->cover_letter ?? $application->cover_letter;
-        $application->save();
-
-        return redirect()->route('job-applications.index')->with('success', 'Application updated successfully.');
-    }
 
     // Delete a job application
-    public function destroy($id)
+    public function delete($id)
     {
         $application = JobApplication::findOrFail($id);
         if ($application->resume) {

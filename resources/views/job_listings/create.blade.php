@@ -43,6 +43,37 @@
                                   placeholder="Enter job description" required>{{ old('description', $job->description ?? '') }}</textarea>
                     </div>
 
+                    <!-- Skills / Keywords -->
+                    <div x-data="tagInput()" class="w-full">
+                        <label class="block text-gray-700 font-medium mb-2">Required Skills / Keywords</label>
+
+                        <!-- Hidden input to store skills as CSV -->
+                        <input type="hidden" name="skills" :value="skills.join(',')" />
+
+                        <!-- Tag display + input -->
+                        <div class="flex flex-wrap border rounded-lg px-3 py-2 focus-within:ring focus-within:ring-blue-200">
+                            <template x-for="(tag, index) in skills" :key="index">
+            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-sm mr-2 mb-2 flex items-center">
+                <span x-text="tag"></span>
+                <button type="button" class="ml-1 text-blue-500 hover:text-blue-700" @click="removeTag(index)">×</button>
+            </span>
+                            </template>
+
+                            <input
+                                x-model="input"
+                                @keydown.space.prevent="addTag()"
+                                @keydown.enter.prevent="addTag()"
+                                type="text"
+                                placeholder="Type and press space"
+                                class="flex-grow border-none focus:outline-none text-sm"
+                            />
+                        </div>
+
+                        <small class="text-gray-500">Press space to add a skill keyword</small>
+                    </div>
+
+
+
                     <!-- Location -->
                     <div>
                         <label class="block text-gray-700 font-medium mb-2">Location</label>
@@ -53,22 +84,16 @@
                     </div>
 
                     <!-- Salary Range -->
-                    <div class="grid grid-cols-2 gap-4">
+
                         <div>
-                            <label class="block text-gray-700 font-medium mb-2">Minimum Salary</label>
+                            <label class="block text-gray-700 font-medium mb-2">Salary Range</label>
                             <input type="number" name="salary_min"
-                                   value="{{ old('salary_min', $job->salary_min ?? '') }}"
+                                   value="{{ old('salary_range', $job->salary_range ?? '') }}"
                                    class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
-                                   placeholder="₹ Minimum salary" required>
+                                   placeholder="Salary Range" required>
                         </div>
-                        <div>
-                            <label class="block text-gray-700 font-medium mb-2">Maximum Salary</label>
-                            <input type="number" name="salary_max"
-                                   value="{{ old('salary_max', $job->salary_max ?? '') }}"
-                                   class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
-                                   placeholder="₹ Maximum salary" required>
-                        </div>
-                    </div>
+
+
 
                     <!-- Job Type -->
                     <div>
@@ -129,4 +154,26 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script>
+        function tagInput() {
+            return {
+                input: '',
+                skills: {!! json_encode(explode(',', old('skills', $job->skills ?? ''))) !!},
+                addTag() {
+                    const tag = this.input.trim();
+                    if (tag && !this.skills.includes(tag)) {
+                        this.skills.push(tag);
+                    }
+                    this.input = '';
+                },
+                removeTag(index) {
+                    this.skills.splice(index, 1);
+                }
+            }
+        }
+    </script>
+
+
 </x-app-layout>
