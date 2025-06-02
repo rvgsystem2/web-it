@@ -29,9 +29,11 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
 Route::get('/career', [HomeController::class, 'career'])->name('career');
+Route::get('/careerByCategory/{category}', [HomeController::class, 'careerByCategory'])->name('careerByCategory');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/jobs', [HomeController::class, 'jobs'])->name('jobs');
 Route::get('/employee', [HomeController::class, 'employee'])->name('employee');
+Route::get('/applyForJob/{job}', [HomeController::class, 'applyForJob'])->name('applyForJob')->middleware('auth');
 
 // Routes that require authentication
 Route::middleware('auth')->group(function () {
@@ -82,6 +84,17 @@ Route::middleware('auth')->group(function () {
        Route::get('edit/{job}', 'edit')->name('edit');
        Route::post('update/{job}', 'update')->name('update');
        Route::post('delete/{job}', 'delete')->name('delete');
+    });
+
+    Route::controller(\App\Http\Controllers\JobApplicationController::class)->name('application.')->prefix('application')->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store/{id}', 'store')->name('store');
+        Route::get('edit/{application}', 'edit')->name('edit');
+        Route::post('update/{application}', 'update')->name('update');
+        Route::post('delete/{application}', 'delete')->name('delete');
+        Route::get('show/{application}', 'show')->name('show');
+        Route::post('status/{application}', 'status')->name('status');
     });
 
 

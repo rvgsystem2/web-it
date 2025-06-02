@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('job_applications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('job_id')->constrained()->onDelete('cascade');
+            $table->string('name');
+            $table->string('email');
+            $table->foreignId('job_id')->constrained('job_listings')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('resume')->nullable();
             $table->text('cover_letter')->nullable();

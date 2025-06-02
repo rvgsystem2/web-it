@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\JobListing;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -16,9 +18,24 @@ class HomeController extends Controller
    public function faq(){
     return view('frontend.faq');
    }
-   public function career(){
-    return view('frontend.career');
+   public function career(Request $request){
+        $categories = Category::all();
+        if ($request->slug){
+            $category = Category::where('slug', $request->slug)->first();
+            $jobs = JobListing::where('category_id', $category->id)->get();
+        }else{
+            $jobs = JobListing::all();
+        }
+        return view('frontend.career', compact('categories', 'jobs'));
    }
+
+    public function careerByCategory(Category $category)
+    {
+        $categories = Category::all();
+        $jobs = JobListing::where('category_id', $category->id)->get();
+
+        return view('frontend.career', compact('categories', 'jobs'));
+    }
    public function about(){
     return view('frontend.about');
    }
@@ -27,5 +44,8 @@ class HomeController extends Controller
    }
    public function employee(){
     return view('frontend.employee');
+   }
+   public function applyForJob(JobListing $job){
+    return view('frontend.applyForJob', compact('job'));
    }
 }

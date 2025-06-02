@@ -508,68 +508,31 @@
             </div>
 
             <div class="position-filter">
-                <button class="filter-btn active" data-filter="all">All Positions</button>
-                <button class="filter-btn" data-filter="engineering">Engineering</button>
-                <button class="filter-btn" data-filter="design">Design</button>
-                <button class="filter-btn" data-filter="marketing">Marketing</button>
-                <button class="filter-btn" data-filter="operations">Operations</button>
+                <a href="{{route('career')}}" class="filter-btn active" data-filter="all">All Positions</a>
+
+                @foreach($categories as $category)
+                    <form action="{{route('career')}}">
+                        <input type="hidden" name="slug" value="{{$category->slug}}">
+                    <button type="submit"  class="filter-btn" data-filter="engineering">{{$category->name}}</button>
+                    </form>
+                @endforeach
+
             </div>
 
             <div class="positions-list">
-                <div class="position-card" data-category="engineering">
-                    <h3>Senior Software Engineer</h3>
-                    <div class="position-meta">
-                        <span><i class="fas fa-map-marker-alt"></i> Remote</span>
-                        <span><i class="fas fa-briefcase"></i> Full-time</span>
-                        <span><i class="fas fa-clock"></i> Posted 2 days ago</span>
+                @foreach($jobs as $job)
+                    <div class="position-card" data-category="engineering">
+                        <h3>{{$job->title}}</h3>
+                        <div class="position-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> {{$job->location}}</span>
+                            <span><i class="fas fa-briefcase"></i> {{$job->job_type}}</span>
+                            <span><i class="fas fa-clock"></i> {{$job->created_at->diffForHumans()}}</span>
+                        </div>
+                        <p>{!! $job->description !!}</p>
+                        <a href="{{route('applyForJob', ['job'=> $job->id])}}" class="btn">Apply Now</a>
                     </div>
-                    <p>We're looking for an experienced software engineer to lead development of our core products. You'll work with modern technologies and mentor junior team members.</p>
-                    <a href="#" class="btn">Apply Now</a>
-                </div>
+                @endforeach
 
-                <div class="position-card" data-category="design">
-                    <h3>UX/UI Designer</h3>
-                    <div class="position-meta">
-                        <span><i class="fas fa-map-marker-alt"></i> San Francisco, CA</span>
-                        <span><i class="fas fa-briefcase"></i> Full-time</span>
-                        <span><i class="fas fa-clock"></i> Posted 1 week ago</span>
-                    </div>
-                    <p>Join our design team to create intuitive and beautiful user experiences. You'll collaborate with product managers and engineers to bring designs to life.</p>
-                    <a href="#" class="btn">Apply Now</a>
-                </div>
-
-                <div class="position-card" data-category="marketing">
-                    <h3>Digital Marketing Specialist</h3>
-                    <div class="position-meta">
-                        <span><i class="fas fa-map-marker-alt"></i> New York, NY</span>
-                        <span><i class="fas fa-briefcase"></i> Full-time</span>
-                        <span><i class="fas fa-clock"></i> Posted 3 days ago</span>
-                    </div>
-                    <p>Drive our digital marketing efforts with innovative campaigns. You'll manage social media, email marketing, and PPC campaigns to grow our audience.</p>
-                    <a href="#" class="btn">Apply Now</a>
-                </div>
-
-                <div class="position-card" data-category="operations">
-                    <h3>Operations Manager</h3>
-                    <div class="position-meta">
-                        <span><i class="fas fa-map-marker-alt"></i> Chicago, IL</span>
-                        <span><i class="fas fa-briefcase"></i> Full-time</span>
-                        <span><i class="fas fa-clock"></i> Posted 5 days ago</span>
-                    </div>
-                    <p>Oversee our daily operations and implement processes to improve efficiency. You'll work across departments to ensure smooth business operations.</p>
-                    <a href="#" class="btn">Apply Now</a>
-                </div>
-
-                <div class="position-card" data-category="engineering">
-                    <h3>DevOps Engineer</h3>
-                    <div class="position-meta">
-                        <span><i class="fas fa-map-marker-alt"></i> Remote</span>
-                        <span><i class="fas fa-briefcase"></i> Full-time</span>
-                        <span><i class="fas fa-clock"></i> Posted 1 week ago</span>
-                    </div>
-                    <p>Build and maintain our cloud infrastructure and CI/CD pipelines. You'll ensure our systems are scalable, secure, and highly available.</p>
-                    <a href="#" class="btn">Apply Now</a>
-                </div>
             </div>
         </div>
     </section>
