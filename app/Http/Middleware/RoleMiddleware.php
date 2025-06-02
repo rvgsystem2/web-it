@@ -16,9 +16,9 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->hasRole('Super Admin|Editor')){
+        if (Auth::check() && Auth::user()->hasAnyRole(['Super Admin', 'Editor'])) {
             return $next($request);
-        }else{
+        } else {
             return redirect('/');
         }
     }
