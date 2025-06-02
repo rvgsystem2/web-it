@@ -32,6 +32,17 @@ Route::get('/career', [HomeController::class, 'career'])->name('career');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/jobs', [HomeController::class, 'jobs'])->name('jobs');
 Route::get('/employee', [HomeController::class, 'employee'])->name('employee');
+Route::get('/service', [HomeController::class, 'service'])->name('service');
+Route::get('/appdevelopment', [HomeController::class, 'appdevelopment'])->name('appdevelopment');
+Route::get('/bussiness_process', [HomeController::class, 'bussiness_process'])->name('bussiness_process');
+Route::get('/bussiness_solution', [HomeController::class, 'bussiness_solution'])->name('bussiness_solutiom');
+Route::get('/cyber_security', [HomeController::class, 'cyber_security'])->name('cyber_security');
+Route::get('/web_development', [HomeController::class, 'web_development'])->name('web_development');
+Route::get('/iande_design', [HomeController::class, 'iande_design'])->name('iande_design');
+Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
+Route::get('/team', [HomeController::class, 'team'])->name('team');
+Route::get('/privacy_policy', [HomeController::class, 'privacy_policy'])->name('privacy_policy');
+Route::get('/terms_condition', [HomeController::class, 'terms_condition'])->name('terms_condition');
 
 // Routes that require authentication
 Route::middleware('auth')->group(function () {

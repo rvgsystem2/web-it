@@ -49,7 +49,7 @@
     <!-- Navbar & Carousel Start -->
     <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
-            <a href="index.php" class="navbar-brand p-0">
+            <a href="/" class="navbar-brand p-0">
                 <h1 class="m-0"><i class=" me-2"></i>Cybrexus</h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -61,14 +61,14 @@
 
                    <!-- <a href="service.html" class="nav-item nav-link">Services</a>-->
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                        <a href="{{route('service')}}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
                         <div class="dropdown-menu m-0">
-                            <a href="" class="dropdown-item">App Development</a>
-                            <a href="" class="dropdown-item">Business Solution</a>
-                            <a href="" class="dropdown-item">Business Process</a>
-                            <a href="" class="dropdown-item">Cyber Security</a>
-                            <a href="" class="dropdown-item">Web Development</a>
-                            <a href="" class="dropdown-item">Interior & Exterior Design</a>
+                            <a href="{{route('appdevelopment')}}" class="dropdown-item">App Development</a>
+                            <a href="{{route('bussiness_solutiom')}}" class="dropdown-item">Business Solution</a>
+                            <a href="{{route('bussiness_process')}}" class="dropdown-item">Business Process</a>
+                            <a href="{{route('cyber_security')}}" class="dropdown-item">Cyber Security</a>
+                            <a href="{{route('web_development')}}" class="dropdown-item">Web Development</a>
+                            <a href="{{route('iande_design')}}" class="dropdown-item">Interior & Exterior Design</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
@@ -76,7 +76,7 @@
                         <div class="dropdown-menu m-0">
                             <a href="{{route('faq')}}" class="dropdown-item">FAQ</a>
                             <a href="{{route('career')}}" class="dropdown-item">Career page</a>
-                            <a href="#" class="dropdown-item">Blog</a>
+                            <a href="{{route('blog')}}" class="dropdown-item">Blog</a>
                              <a href="{{route('about')}}" class="dropdown-item">About</a>
 
                         </div>

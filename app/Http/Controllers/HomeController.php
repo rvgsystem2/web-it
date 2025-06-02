@@ -28,4 +28,38 @@ class HomeController extends Controller
    public function employee(){
     return view('frontend.employee');
    }
+   public function service(){
+    return view('frontend.service');
+   }
+   public function appdevelopment(){
+    return view('frontend.appdevelopment');
+   }
+   public function bussiness_process(){
+    return view('frontend.bussiness_process');
+   }
+   public function bussiness_solution(){
+    return view('frontend.bussiness_solution');
+   }
+   public function cyber_security(){
+    return view('frontend.cyber_security');
+   }
+   public function web_development(){
+    return view('frontend.web_development');
+   }
+   public function iande_design(){
+    return view('frontend.iande_design');
+   }
+   public function blog(){
+    return view('frontend.blog');
+   }
+   public function team(){
+    return view('frontend.team');
+   }
+   public function privacy_policy(){
+    return view('frontend.privacy_policy');
+   }
+   public function terms_condition(){
+    return view('frontend.terms_condition');
+   }
 }
+
