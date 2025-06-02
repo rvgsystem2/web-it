@@ -507,6 +507,10 @@
                 <p>Explore our current job openings and find the perfect fit for your skills and aspirations.</p>
             </div>
 
+            <form action="{{route('career')}}">
+                <input type="hidden" name="slug" placeholder="Keywords" >
+                <button type="submit"  class="filter-btn" data-filter="engineering">Search</button>
+            </form>
             <div class="position-filter">
                 <a href="{{route('career')}}" class="filter-btn active" data-filter="all">All Positions</a>
 

@@ -46,7 +46,7 @@
                     <!-- Skills / Keywords -->
 
                     <div>
-                        <label class="block text-gray-700 font-medium mb-2">Job Description</label>
+                        <label class="block text-gray-700 font-medium mb-2">Skills keyword</label>
                         <textarea name="keywords" rows="2"
                                   class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
                                   placeholder="Enter job keywords" required>{{ old('keywords', $job->keywords ?? '') }}</textarea>

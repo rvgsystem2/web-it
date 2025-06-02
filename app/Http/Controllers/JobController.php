@@ -28,8 +28,8 @@ class JobController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required',
             'location' => 'required|string|max:255',
-            'salary_min' => 'required|integer|min:0',
-            'salary_max' => 'required|integer|gte:salary_min',
+            'salary_range' => 'nullable',
+
             'job_type' => 'required|in:full-time,part-time,internship',
             'category_id' => 'nullable|exists:categories,id',
             'deadline' => 'required|date|after:today',

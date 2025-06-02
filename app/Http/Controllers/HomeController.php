@@ -23,9 +23,12 @@ class HomeController extends Controller
         if ($request->slug){
             $category = Category::where('slug', $request->slug)->first();
             $jobs = JobListing::where('category_id', $category->id)->get();
+        }elseif($request->keywords){
+            $jobs = JobListing::where('skills', 'LIKE', "%$request->keywords%")->get();
         }else{
             $jobs = JobListing::all();
         }
+
         return view('frontend.career', compact('categories', 'jobs'));
    }
 
