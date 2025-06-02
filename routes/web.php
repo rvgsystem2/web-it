@@ -30,6 +30,8 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
 Route::get('/career', [HomeController::class, 'career'])->name('career');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/jobs', [HomeController::class, 'jobs'])->name('jobs');
+Route::get('/employee', [HomeController::class, 'employee'])->name('employee');
 
 // Routes that require authentication
 Route::middleware('auth')->group(function () {

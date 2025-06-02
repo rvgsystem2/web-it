@@ -22,4 +22,10 @@ class HomeController extends Controller
    public function about(){
     return view('frontend.about');
    }
+   public function jobs(){
+    return view('frontend.jobs');
+   }
+   public function employee(){
+    return view('frontend.employee');
+   }
 }
