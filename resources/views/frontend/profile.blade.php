@@ -37,22 +37,35 @@
                     <!-- Phone -->
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone Number</label>
-                        <input type="text" name="phone" class="form-control" value="{{ Auth::user()->phone ?? '' }}">
+                        <input type="text" name="phone" class="form-control" value="{{ Auth::user()->phone_number ?? '' }}">
                     </div>
 
                     <!-- Profile Picture -->
                     <div class="mb-3">
-                        <label for="profile_picture" class="form-label">Profile Picture</label><br>
-                        @if(Auth::user()->profile_picture)
-                            <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" width="100" class="mb-2 rounded">
+                        <label for="profile_image" class="form-label">Profile Image</label><br>
+                        @if(Auth::user()->profile_image)
+                            <img src="{{ asset('storage/' . Auth::user()->profile_image) }}" width="100" class="mb-2 rounded">
                         @endif
-                        <input type="file" name="profile_picture" class="form-control">
+                        <input type="file" name="profile_image" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="resume" class="form-label">Resume</label><br>
+                        @if(Auth::user()->resume)
+                            <a target="_blank" href="{{ asset('storage/' . Auth::user()->resume) }}" class="mb-2 rounded">Resume</a>
+                        @endif
+                        <input type="file" name="resume" class="form-control">
                     </div>
 
                     <!-- Submit Button -->
                     <div class="text-end">
+
                         <button type="submit" class="btn btn-primary px-5">Update</button>
                     </div>
+                </form>
+                <form action="{{route('logout')}}" method="post">
+                    @csrf
+                    <button  class="btn btn-danger px-5">Logout</button>
                 </form>
             </div>
         </div>

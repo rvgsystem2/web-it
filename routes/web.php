@@ -22,7 +22,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth','verified'])->name('dashboard');
 
 // FORNTEND ROUTES:::::::
 Route::get('/', [HomeController::class, 'index'])->name('index');
@@ -39,10 +38,12 @@ Route::get('/employee', [HomeController::class, 'employee'])->name('employee');
 Route::middleware('auth')->group(function () {
     Route::get('/applyForJob/{job}', [HomeController::class, 'applyForJob'])->name('applyForJob');
     Route::get('/userProfile', [HomeController::class, 'profile'])->name('userProfile');
-    Route::get('/userProfile/update/{id}', [HomeController::class, 'profileUpdate'])->name('userProfile.update');
+    Route::post('/userProfile/update/{id}', [HomeController::class, 'profileUpdate'])->name('userProfile.update');
     Route::post('application/store/{id}', [\App\Http\Controllers\JobApplicationController::class, 'store'])->name('application.store');
 
     Route::middleware(\App\Http\Middleware\RoleMiddleware::class)->group(function(){
+        Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

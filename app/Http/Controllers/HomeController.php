@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\JobListing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -49,7 +51,7 @@ class HomeController extends Controller
         return view('frontend.profile');
    }
 
-    public function updateProfile(Request $request, $id)
+    public function profileUpdate(Request $request, $id)
     {
         $user = Auth::user();
 
@@ -67,21 +69,29 @@ class HomeController extends Controller
         ]);
 
         // Update profile picture if uploaded
-        if ($request->hasFile('profile_picture')) {
+        if ($request->hasFile('profile_image')) {
             // Delete old profile picture if exists
-            if ($user->profile_picture && Storage::exists('public/' . $user->profile_picture)) {
-                Storage::delete('public/' . $user->profile_picture);
+            if ($user->profile_image && Storage::exists('public/' . $user->profile_image)) {
+                Storage::delete('public/' . $user->profile_image);
             }
 
             // Store new file and save path
-            $path = $request->file('profile_picture')->store('profile_pictures', 'public');
-            $user->profile_picture = $path;
+            $path = $request->file('profile_image')->store('profile_images', 'public');
+            $user->profile_image = $path;
+        }
+
+        if ($request->hasFile('resume')) {
+            if ($user->resume && Storage::exists('public/' . $user->resume)) {
+                Storage::delete('public/' . $user->resume);
+            }
+            $resumePath = $request->file('resume')->store('resumes', 'public');
+            $user->resume = $resumePath;
         }
 
         // Update user data
         $user->name = $validated['name'];
         $user->email = $validated['email'];
-        $user->phone = $validated['phone'] ?? null;
+        $user->phone_number = $validated['phone'] ?? null;
 
         $user->save();
 

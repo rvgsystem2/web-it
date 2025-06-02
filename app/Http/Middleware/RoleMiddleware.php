@@ -19,7 +19,7 @@ class RoleMiddleware
         if (Auth::check() && Auth::user()->hasAnyRole(['Super Admin', 'Editor'])) {
             return $next($request);
         } else {
-            return redirect('/');
+            return redirect('userProfile');
         }
     }
 }
