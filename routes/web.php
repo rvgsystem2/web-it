@@ -35,6 +35,7 @@ Route::get('/jobs', [HomeController::class, 'jobs'])->name('jobs');
 Route::get('/employee', [HomeController::class, 'employee'])->name('employee');
 Route::get('/applyForJob/{job}', [HomeController::class, 'applyForJob'])->name('applyForJob')->middleware('auth');
 Route::get('/userProfile', [HomeController::class, 'profile'])->name('userProfile')->middleware('auth');
+Route::get('/userProfile/update/{id}', [HomeController::class, 'profileUpdate'])->name('userProfile.update')->middleware('auth');
 
 // Routes that require authentication
 Route::middleware('auth')->group(function () {

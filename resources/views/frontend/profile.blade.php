@@ -20,10 +20,8 @@
                 <h4>Profile Information</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('user.update', Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('userProfile.update', Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    @method('PUT')
-
                     <!-- Name -->
                     <div class="mb-3">
                         <label for="name" class="form-label">Full Name</label>
