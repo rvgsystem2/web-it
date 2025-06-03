@@ -36,7 +36,6 @@
                             <th class="px-6 py-4">Title</th>
                             <th class="px-6 py-4">Location</th>
                             <th class="px-6 py-4">Job Type</th>
-                            <th class="px-6 py-4">Salary</th>
                             <th class="px-6 py-4">Deadline</th>
                             <th class="px-6 py-4">Status</th>
                             <th class="px-6 py-4 text-center">Actions</th>
@@ -49,7 +48,6 @@
                                 <td class="px-6 py-4 text-gray-700">{{ $job->title }}</td>
                                 <td class="px-6 py-4 text-gray-600">{{ $job->location }}</td>
                                 <td class="px-6 py-4 text-gray-600 capitalize">{{ $job->job_type }}</td>
-                                <td class="px-6 py-4 text-gray-600">₹{{ $job->salary_min }} - ₹{{ $job->salary_max }}</td>
                                 <td class="px-6 py-4 text-gray-600">{{ $job->deadline->format('d M Y') }}</td>
                                 <td class="px-6 py-4">
                                     @if ($job->is_active)
