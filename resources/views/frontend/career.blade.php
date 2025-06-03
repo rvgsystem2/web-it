@@ -534,6 +534,15 @@
                             @if($job->salary_range)
                                 <span><i class="fas fa-clock"></i> {{$job->salary_range}}</span>
                             @endif
+                            <span><i class="fas fa-skill"></i> skills: </span>
+                            @php
+                                $skills = preg_split('/[\s,]+/', $job->skills);
+                            @endphp
+                            @foreach($skills as $value)
+                                @if(!empty($value))
+                                    <span class="badge bg-primary me-2 mt-2 mb-2">{{ $value }}</span>
+                                @endif
+                            @endforeach
                         </div>
                         <p>{!! $job->description !!}</p>
                         <a href="{{route('applyForJob', ['job'=> $job->id])}}" class="btn">Apply Now</a>
