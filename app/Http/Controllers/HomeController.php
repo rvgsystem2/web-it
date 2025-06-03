@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Category;
 use App\Models\JobListing;
 use Illuminate\Http\Request;
@@ -12,7 +13,8 @@ class HomeController extends Controller
 {
 
     public function index(){
-        return view('frontend.index');
+        $banners = Banner::where('status', 'active')->get();
+        return view('frontend.index', compact('banners'));
     }
    public function contact(){
     return view('frontend.contact');

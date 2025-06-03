@@ -5,26 +5,38 @@
 <div class="container-fluid position-relative p-0">
 <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img class="w-100" src="{{asset('asset/img/carousel-1.jpg')}}" alt="Image">
-            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                <div class="p-3" style="max-width: 900px;">
+        @foreach($banners as $banner)
+            <div class="carousel-item {{$loop->iteration == 1 ? 'active' : ''}}">
+                <img class="w-100" src="{{asset('storage/'. $banner->banner)}}" alt="Image">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    <div class="p-3" style="max-width: 900px;">
 
-                    <h1 class="display-1 text-white mb-md-4 animated zoomIn">Creative & Innovative Digital Solution</h1>
+                        <h1 class="display-1 text-white mb-md-4 animated zoomIn">{{$banner->title}}</h1>
 
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="carousel-item">
-            <img class="w-100" src="{{asset('asset/img/carousel-2.jpg')}}" alt="Image">
-            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                <div class="p-3" style="max-width: 900px;">
+        @endforeach
+{{--        <div class="carousel-item">--}}
+{{--            <img class="w-100" src="{{asset('asset/img/carousel-1.jpg')}}" alt="Image">--}}
+{{--            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">--}}
+{{--                <div class="p-3" style="max-width: 900px;">--}}
 
-                    <h1 class="display-1 text-white mb-md-4 animated zoomIn">Creative & Innovative Digital Solution</h1>
+{{--                    <h1 class="display-1 text-white mb-md-4 animated zoomIn">Creative & Innovative Digital Solution</h1>--}}
 
-                </div>
-            </div>
-        </div>
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="carousel-item">--}}
+{{--            <img class="w-100" src="{{asset('asset/img/carousel-2.jpg')}}" alt="Image">--}}
+{{--            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">--}}
+{{--                <div class="p-3" style="max-width: 900px;">--}}
+
+{{--                    <h1 class="display-1 text-white mb-md-4 animated zoomIn">Creative & Innovative Digital Solution</h1>--}}
+
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
         data-bs-slide="prev">
