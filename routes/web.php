@@ -120,6 +120,16 @@ Route::middleware('auth')->group(function () {
            Route::get('show/{contact}', 'show')->name('show');
            Route::post('delete', 'delete')->name('delete');
         });
+
+        Route::controller(\App\Http\Controllers\BannerController::class)->name('banner.')->prefix('banner')->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('edit/{banner}', 'edit')->name('edit');
+            Route::post('update/{banner}', 'update')->name('update');
+            Route::post('delete/{banner}', 'delete')->name('delete');
+            Route::post('status/{banner}', 'status')->name('status');
+        });
     });
 });
 

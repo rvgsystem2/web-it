@@ -35,6 +35,10 @@
                         <i class="fas fa-tachometer-alt mr-1"></i> Contact Messages
                     </x-nav-link>
 
+                    <x-nav-link :href="route('banner.index')" :active="request()->routeIs('banner*')">
+                        <i class="fas fa-tachometer-alt mr-1"></i> Banners
+                    </x-nav-link>
+
                     <!-- Dropdown for Roles, Permissions, Users -->
                     {{-- <div class="relative">
                         <button @click="open = !open" class="flex items-center space-x-1 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-md">
