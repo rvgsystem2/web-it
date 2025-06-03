@@ -49,7 +49,7 @@ class JobApplicationController extends Controller
             'status' => 'applied',
         ]);
 
-        return redirect('/')->with('success', 'Your Application submitted successfully.');
+        return redirect('career')->with('success', 'Your Application submitted successfully.');
     }
 
     // Show single job application
