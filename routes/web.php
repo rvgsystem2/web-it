@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 // FORNTEND ROUTES:::::::
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::post('/contact/store', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
 Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
 Route::get('/career', [HomeController::class, 'career'])->name('career');
 Route::get('/careerByCategory/{category}', [HomeController::class, 'careerByCategory'])->name('careerByCategory');
@@ -43,6 +44,7 @@ Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
 Route::get('/team', [HomeController::class, 'team'])->name('team');
 Route::get('/privacy_policy', [HomeController::class, 'privacy_policy'])->name('privacy_policy');
 Route::get('/terms_condition', [HomeController::class, 'terms_condition'])->name('terms_condition');
+
 
 
 // Routes that require authentication
@@ -112,6 +114,11 @@ Route::middleware('auth')->group(function () {
             Route::post('delete/{application}', 'delete')->name('delete');
             Route::get('show/{application}', 'show')->name('show');
             Route::post('status/{application}', 'status')->name('status');
+        });
+        Route::controller(\App\Http\Controllers\ContactController::class)->name('contact.')->prefix('contact')->group(function(){
+           Route::get('index', 'index')->name('index');
+           Route::get('show/{contact}', 'show')->name('show');
+           Route::post('delete', 'delete')->name('delete');
         });
     });
 });
