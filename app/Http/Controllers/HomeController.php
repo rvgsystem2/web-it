@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use App\Models\Banner;
 use App\Models\Category;
+use App\Models\Choose;
+use App\Models\ChooseFeture;
 use App\Models\JobListing;
+use App\Models\Service;
+use App\Models\ServiceFeature;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -14,7 +20,14 @@ class HomeController extends Controller
 
     public function index(){
         $banners = Banner::where('status', 'active')->get();
-        return view('frontend.index', compact('banners'));
+        $abouts = About::all();
+        $chooses = Choose::all();
+        $choosesFeatures = ChooseFeture::all();
+        $testimonials = Testimonial::where('status', 'active')->get();
+        $servicesTitle= Service::all();
+        $serviceFeature= ServiceFeature::all();
+        $logos = \App\Models\Logo::all();
+        return view('frontend.index', compact('banners', 'abouts', 'chooses', 'choosesFeatures', 'testimonials', 'servicesTitle', 'serviceFeature', 'logos'));
     }
    public function contact(){
     return view('frontend.contact');

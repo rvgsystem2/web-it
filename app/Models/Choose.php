@@ -4,9 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class About extends Model
+class Choose extends Model
 {
-    //
-
     protected $guarded = ['id'];
 }

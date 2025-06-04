@@ -19,25 +19,103 @@
                         <i class="fas fa-tachometer-alt mr-1"></i> Dashboard
                     </x-nav-link>
 
-                    <x-nav-link :href="route('category.index')" :active="request()->routeIs('category*')">
-                        <i class="fas fa-tachometer-alt mr-1"></i> Category
-                    </x-nav-link>
+                  <!-- Dropdown Navigation -->
+<div x-data="{ open: false }" class="relative">
+    <button @click="open = !open"
+        class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 w-full rounded-md focus:outline-none">
+        <i class="fas fa-briefcase mr-2"></i> Job Module
+        <svg class="ml-auto h-4 w-4 transform transition-transform duration-200"
+             :class="{ 'rotate-180': open }"
+             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M19 9l-7 7-7-7"/>
+        </svg>
+    </button>
 
-                    <x-nav-link :href="route('job.index')" :active="request()->routeIs('job*')">
-                        <i class="fas fa-tachometer-alt mr-1"></i> Job Listing
-                    </x-nav-link>
+    <div x-show="open" @click.away="open = false"
+         x-transition
+         class="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200">
+        <x-nav-link :href="route('category.index')" :active="request()->routeIs('category*')"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-list mr-2"></i> Category
+        </x-nav-link>
 
-                    <x-nav-link :href="route('application.index')" :active="request()->routeIs('application*')">
-                        <i class="fas fa-tachometer-alt mr-1"></i> Job Application
-                    </x-nav-link>
+        <x-nav-link :href="route('job.index')" :active="request()->routeIs('job*')"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-briefcase mr-2"></i> Job Listing
+        </x-nav-link>
+
+        <x-nav-link :href="route('application.index')" :active="request()->routeIs('application*')"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-file-alt mr-2"></i> Job Application
+        </x-nav-link>
+    </div>
+</div>
 
                     <x-nav-link :href="route('contact.index')" :active="request()->routeIs('contact*')">
-                        <i class="fas fa-tachometer-alt mr-1"></i> Contact Messages
+                        <i class="fas fa-tachometer-alt mr-1"></i> Contact
                     </x-nav-link>
 
-                    <x-nav-link :href="route('banner.index')" :active="request()->routeIs('banner*')">
-                        <i class="fas fa-tachometer-alt mr-1"></i> Banners
+             
+                    <x-nav-link :href="route('services.index')" :active="request()->routeIs('services*')">
+                        <i class="fas fa-cogs mr-1"></i> ServicesTitle
                     </x-nav-link>
+                    <x-nav-link :href="route('service-features.index')" :active="request()->routeIs('service-features*')">
+                        <i class="fas fa-star mr-1"></i> Service Features
+                    </x-nav-link>
+                    <x-nav-link :href="route('testimonials.index')" :active="request()->routeIs('testimonial*')">
+                        <i class="fas fa-comments mr-1"></i> Testimonials
+                    </x-nav-link>
+               
+                    <x-nav-link :href="route('logos.index')" :active="request()->routeIs('logos*')">
+                        <i class="fas fa-image mr-1"></i> Logos
+                    </x-nav-link>
+
+
+                   <!-- Website Content Dropdown -->
+<div x-data="{ open: false }" class="relative">
+    <button @click="open = !open"
+        class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 w-full rounded-md focus:outline-none">
+        <i class="fas fa-globe mr-2"></i> Website Content
+        <svg class="ml-auto h-4 w-4 transform transition-transform duration-200"
+             :class="{ 'rotate-180': open }"
+             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M19 9l-7 7-7-7"/>
+        </svg>
+    </button>
+
+    <div x-show="open" @click.away="open = false"
+         x-transition
+         class="absolute z-10 mt-2 w-56 bg-white rounded-md shadow-lg border border-gray-200">
+
+        <x-nav-link :href="route('banner.index')" :active="request()->routeIs('banner*')"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-image mr-2"></i> Banners
+        </x-nav-link>
+
+        <x-nav-link :href="route('about.index')" :active="request()->routeIs('about*')"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-info-circle mr-2"></i> About
+        </x-nav-link>
+
+        <x-nav-link :href="route('chooses.index')" :active="request()->routeIs('chooses*')"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-check-circle mr-2"></i> Why Choose Us
+        </x-nav-link>
+
+        <x-nav-link :href="route('choose-features.index')" :active="request()->routeIs('choose-features*')"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-star mr-2"></i> Choose Features
+        </x-nav-link>
+    </div>
+</div>
+
+
+
+
+                  
+
 
                     <!-- Dropdown for Roles, Permissions, Users -->
                     {{-- <div class="relative">

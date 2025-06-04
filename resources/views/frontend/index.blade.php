@@ -70,21 +70,22 @@
     <!-- About Start -->
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
-            <div class="row g-5">
+            @forelse ($abouts as $about)
+                 <div class="row g-5">
                 <div class="col-lg-7">
                     <div class="section-title position-relative pb-3 mb-5">
 
-                        <h1 class="mb-0">The Best IT Solution With 3+ Years of Experience</h1>
+                        <h1 class="mb-0">{{ $about->title }}</h1>
                     </div>
-                    <p class="mb-4">Cybrexus is a team of passionate and innovative IT professionals who aim to provide high-quality and affordable solutions for your business needs. Whether you need web development, mobile app development, cybersecurity, Business Solutions, Business Process, Interior & Exterior Design. We believe in building long-term relationships with our clients, based on trust, transparency, and mutual growth. We are not just a service provider, we are your partner in success. Contact us today and let us help you transform your business with our cutting-edge IT solutions.</p>
+                    <p class="mb-4">{{ $about->description }}</p>
                     <div class="row g-0 mb-3">
                         <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
-                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Award Winning</h5>
-                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Professional Staff</h5>
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>{{ $about->f_1 }}</h5>
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>{{ $about->f_2 }}</h5>
                         </div>
                         <div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
-                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>24/7 Support</h5>
-                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Best Solution</h5>
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>{{ $about->f_3 }}</h5>
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>{{ $about->f_4 }}</h5>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
@@ -92,19 +93,23 @@
                             <i class="fa fa-phone-alt text-white"></i>
                         </div>
                         <div class="ps-4">
-                            <h5 class="mb-2">Call to ask any question</h5>
-                            <h4 class="text-primary mb-0">+91 7020893552</h4>
+                            <h5 class="mb-2">{{ $about->call_to_title }}</h5>
+                            <h4 class="text-primary mb-0">{{ $about->call_to_number }}</h4>
                         </div>
                     </div>
 
                 </div>
                 <div class="col-lg-5" style="min-height: 500px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="{{asset('asset/img/about.jpg')}}" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="{{asset('storage/' . $about->image)}}" style="object-fit: cover;">
                     </div>
 
                 </div>
             </div>
+            @empty
+                <p>No about information available.</p>
+            @endforelse
+           
         </div>
     </div>
     <!-- About End -->
@@ -113,51 +118,58 @@
     <!-- Features Start -->
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
-            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-                <h5 class="fw-bold text-primary text-uppercase">Why Choose Us</h5>
-                <h1 class="mb-0">We Are Here to Grow Your Business Exponentially</h1>
+            @forelse ($chooses as $c)
+                  <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                <h5 class="fw-bold text-primary text-uppercase">{{ $c->title }}</h5>
+                <h1 class="mb-0">{{ $c->sub_title }}</h1>
             </div>
+            @empty
+                <p>No choose information available.</p>
+            @endforelse
+          
             <div class="row g-5">
                 <div class="col-lg-4">
-                    <div class="row g-5">
+                    @forelse ($choosesFeatures->take(2) as $f)
+                         <div class="row g-5">
                         <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
                             <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                                <i class="fa fa-cubes text-white"></i>
+                                <i class="{{ $f->icon }} text-white"></i>
                             </div>
-                            <h4>Best In Industry</h4>
-                            <p class="mb-0">Being the best in your industry is not a destination, but a journey of continuous improvement and excellence.</p>
+                            <h4>{{ $f->title }}</h4>
+                            <p class="mb-0">{{ $f->description }}</p>
                         </div>
-                        <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
-                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                                <i class="fa fa-award text-white"></i>
-                            </div>
-                            <h4>Award Winning</h4>
-                            <p class="mb-0">Winning an award is a testament to your excellence, but also a responsibility to uphold it. It is a reward for your achievements, but also a motivation to aim higher.</p>
-                        </div>
+                      
                     </div>
+                    @empty
+                        <p>No choose feature information available.</p>
+                    @endforelse
+                   
                 </div>
-                <div class="col-lg-4  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
+                @forelse ($chooses as $cc)
+                      <div class="col-lg-4  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.1s" src="{{asset('asset/img/feature.jpg')}}" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.1s" src="{{asset('storage/' . $cc->image)}}" style="object-fit: cover;">
                     </div>
                 </div>
+                @empty
+                    <p>No choose feature information available.</p>
+                @endforelse
+              
                 <div class="col-lg-4">
-                    <div class="row g-5">
-                        <div class="col-12 wow zoomIn" data-wow-delay="0.4s">
+                    @forelse ($choosesFeatures->skip(2)->take(2) as $f)
+                         <div class="row g-5">
+                        <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
                             <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                                <i class="fa fa-users-cog text-white"></i>
+                                <i class="{{ $f->icon }} text-white"></i>
                             </div>
-                            <h4>Professional Staff</h4>
-                            <p class="mb-0">Professional staff are not just employees, they are partners in the mission. They share the same passion, commitment, and dedication as the leaders.</p>
+                            <h4>{{ $f->title }}</h4>
+                            <p class="mb-0">{{ $f->description }}</p>
                         </div>
-                        <div class="col-12 wow zoomIn" data-wow-delay="0.8s">
-                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                                <i class="fa fa-phone-alt text-white"></i>
-                            </div>
-                            <h4>24/7 Support</h4>
-                            <p class="mb-0">We are always here for you, no matter what time of the day or night. Our 24/7 support is our commitment to your satisfaction and peace of mind.</p>
-                        </div>
+                      
                     </div>
+                    @empty
+                        <p>No choose feature information available.</p>
+                    @endforelse
                 </div>
             </div>
         </div>
@@ -168,84 +180,38 @@
     <!-- Service Start -->
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
-            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-                <h5 class="fw-bold text-primary text-uppercase">Our Services</h5>
-                <h1 class="mb-0">Custom IT Solutions for Your Successful Business</h1>
-            </div>
+            @forelse ($servicesTitle as $title)
+                <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                    <h5 class="fw-bold text-primary text-uppercase">{{ $title->title }}</h5>
+                    <h1 class="mb-0">{{ $title->sub_title }}</h1>
+                </div>
+           
+            @empty
+                <p>No service title available.</p>
+            @endforelse
+          
+               
             <div class="row g-5">
-                <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
+                @forelse ($serviceFeature as $sf)
+                      <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
                     <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
                         <div class="service-icon">
-                            <i class="fab fa-android text-white"></i>
+                            <i class="{{ $sf->icon }} text-white"></i>
                         </div>
-                        <h4 class="mb-3">Apps Development</h4>
-                        <p class="m-0">App development is not only a skill, it’s an art. It requires creativity, innovation, and passion to bring an idea to life.</p>
+                        <h4 class="mb-3">{{ $sf->title }}</h4>
+                        <p class="m-0">{{ $sf->sub_title }}</p>
                         <a class="btn btn-lg btn-primary rounded" href="">
                             <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.6s">
-                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="service-icon">
-                            <i class="fa fa-chart-pie text-white"></i>
-                        </div>
-                        <h4 class="mb-3">Business Solution</h4>
-                        <p class="m-0">Business solutions are not just a goal, they are a journey. They involve continuous improvement, innovation, and adaptation to the changing market and customer demands.</p>
-                        <a class="btn btn-lg btn-primary rounded" href="">
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.6s">
-                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="service-icon">
-                            <i class="fa fa-chart-pie text-white"></i>
-                        </div>
-                        <h4 class="mb-3">Business Process</h4>
-                        <p class="m-0">Business process is not just about efficiency, it’s about effectiveness. It’s about doing the right things, in the right way, at the right time, for the right results.</p>
-                        <a class="btn btn-lg btn-primary rounded" href="">
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
-                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="service-icon">
-                            <i class="fa fa-shield-alt text-white"></i>
-                        </div>
-                        <h4 class="mb-3">Cyber Security</h4>
-                        <p class="m-0">Cyber security is not just a responsibility, it’s a necessity. It’s about ensuring the safety and continuity of the business and the society.</p>
-                        <a class="btn btn-lg btn-primary rounded" href="">
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                  <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.9s">
-                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="service-icon">
-                            <i class="fa fa-code text-white"></i>
-                        </div>
-                        <h4 class="mb-3">Web Development</h4>
-                        <p class="m-0">Web development is not just a skill, it’s a vision. It enables you to shape the future of the internet and the world.</p>
-                        <a class="btn btn-lg btn-primary rounded" href="">
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.6s">
-                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="service-icon">
-                            <i class="fa fa-home text-white"></i>
-                        </div>
-                        <h4 class="mb-3">Interior & Exterior Design</h4>
-                        <p class="m-0">Design is not only a craft, it’s an art. It requires imagination, inspiration, and expression to transform an idea into a reality.</p>
-                        <a class="btn btn-lg btn-primary rounded" href="">
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
+                @empty
+                    <p>No service feature information available.</p>
+                @endforelse
+             
+           
+               
+             
 
             </div>
         </div>
@@ -334,54 +300,25 @@
                 <h1 class="mb-0">What Our Clients Say About Our Digital Services</h1>
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.6s">
-                <div class="testimonial-item bg-light my-4">
+               @forelse ($testimonials as $test)
+                    <div class="testimonial-item bg-light my-4">
                     <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
-                        <img class="img-fluid rounded" src="{{asset('asset/img/testimonial-1.jpg')}}" style="width: 60px; height: 60px;" >
+                        <img class="img-fluid rounded" src="{{asset('storage/'.$test->image)}}" style="width: 60px; height: 60px;" >
                         <div class="ps-4">
-                            <h4 class="text-primary mb-1">Monika H</h4>
-                            <small class="text-uppercase">Manager, MHGlobals</small>
+                            <h4 class="text-primary mb-1">{{ $test->name }}</h4>
+                            <small class="text-uppercase">{{ $test->title }}</small>
+                             <small class="text-uppercase">{{ $test->company }}</small>
                         </div>
                     </div>
                     <div class="pt-4 pb-5 px-5">
-                        We are very happy with the results of the digital services provided by this company.
+                        {{ $test->message }}
                     </div>
-                </div>
-                <div class="testimonial-item bg-light my-4">
-                    <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
-                        <img class="img-fluid rounded" src="{{asset('asset/img/testimonial-2.jpg')}}" style="width: 60px; height: 60px;" >
-                        <div class="ps-4">
-                            <h4 class="text-primary mb-1">Roushan K</h4>
-                            <small class="text-uppercase">Dragon Wheel, Delivery Head</small>
-                        </div>
-                    </div>
-                    <div class="pt-4 pb-5 px-5">
-                        They created a stunning website, a powerful app, and a robust cyber security system for our business.
-                    </div>
-                </div>
-                <div class="testimonial-item bg-light my-4">
-                    <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
-                        <img class="img-fluid rounded" src="{{asset('asset/img/testimonial-3.jpg')}}" style="width: 60px; height: 60px;" >
-                        <div class="ps-4">
-                            <h4 class="text-primary mb-1">Shakti S</h4>
-                            <small class="text-uppercase">Head of Department, Yewbelle</small>
-                        </div>
-                    </div>
-                    <div class="pt-4 pb-5 px-5">
-                        They delivered our project on time and within budget, and exceeded our expectations in every aspect.
-                    </div>
-                </div>
-                <div class="testimonial-item bg-light my-4">
-                    <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
-                        <img class="img-fluid rounded" src="{{asset('asset/img/testimonial-4.jpg')}}" style="width: 60px; height: 60px;" >
-                        <div class="ps-4">
-                            <h4 class="text-primary mb-1">Komal Sakhare</h4>
-                            <small class="text-uppercase">Manager, EnergySpark</small>
-                        </div>
-                    </div>
-                    <div class="pt-4 pb-5 px-5">
-                        We are very grateful for the digital services provided by this company.
-                    </div>
-                </div>
+                </div>  
+               @empty
+                   
+               @endforelse
+               
+               
             </div>
         </div>
     </div>
@@ -393,10 +330,13 @@
         <div class="container py-5 mb-5">
             <div class="bg-white">
                 <div class="owl-carousel vendor-carousel">
-                   <img src="{{asset('asset/img/1-MHGlobals.jpg')}}" alt="">
-                    <img src="{{asset('asset/img/4-febonic.jpg')}}" alt="">
-                    <img src="{{asset('asset/img/2-energyspark.jpg')}}" alt="">
-                    <img src="{{asset('yew')}}" alt="">
+                    @forelse ($logos as $logo)
+                        <img src="{{ 'storage/' . $logo->image }}" alt="{{ $logo->name }}">
+                    @empty
+                        <p>No logos found.</p>
+                    @endforelse
+                 
+                    
                 </div>
             </div>
         </div>

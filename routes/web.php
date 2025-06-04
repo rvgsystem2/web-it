@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\DashboardController;
-
+use App\Http\Controllers\ChooseController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 
@@ -30,10 +31,10 @@ Route::post('/contact/store', [\App\Http\Controllers\ContactController::class, '
 Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
 Route::get('/career', [HomeController::class, 'career'])->name('career');
 Route::get('/careerByCategory/{category}', [HomeController::class, 'careerByCategory'])->name('careerByCategory');
-Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/abouts', [HomeController::class, 'about'])->name('about');
 Route::get('/jobs', [HomeController::class, 'jobs'])->name('jobs');
 Route::get('/employee', [HomeController::class, 'employee'])->name('employee');
-Route::get('/service', [HomeController::class, 'service'])->name('service');
+Route::get('/services', [HomeController::class, 'service'])->name('service');
 Route::get('/appdevelopment', [HomeController::class, 'appdevelopment'])->name('appdevelopment');
 Route::get('/bussiness_process', [HomeController::class, 'bussiness_process'])->name('bussiness_process');
 Route::get('/bussiness_solution', [HomeController::class, 'bussiness_solution'])->name('bussiness_solutiom');
@@ -87,6 +88,78 @@ Route::middleware('auth')->group(function () {
         Route::get('/user/permissions/{user}', [UserController::class, 'assignPermissionForm'])->name('user.permission.form');
         Route::post('/user/permissions/{user}', [UserController::class, 'assignPermissionToUser'])->name('user.assign-permission');
 
+
+        // about
+        Route::controller(AboutController::class)->name('about.')->prefix('about')->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('edit/{about}', 'edit')->name('edit');
+            Route::post('update/{about}', 'update')->name('update');
+            Route::get('delete/{about}', 'delete')->name('delete');
+        });
+
+        // Choose
+        Route::controller(ChooseController::class)->name('chooses.')->prefix('choose')->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('edit/{choose}', 'edit')->name('edit');
+            Route::post('update/{choose}', 'update')->name('update');
+            Route::get('delete/{choose}', 'delete')->name('delete');
+        });
+
+        // Choose Feature
+        Route::controller(\App\Http\Controllers\ChooseFetureController::class)->name('choose-features.')->prefix('choose-feature')->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('edit/{feature}', 'edit')->name('edit');
+            Route::post('update/{feature}', 'update')->name('update');
+            Route::get('delete/{feature}', 'delete')->name('delete');
+        });
+
+        // Service
+        Route::controller(\App\Http\Controllers\ServiceController::class)->name('services.')->prefix('service')->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('edit/{service}', 'edit')->name('edit');
+            Route::post('update/{service}', 'update')->name('update');
+            Route::post('delete/{service}', 'delete')->name('delete');
+        });
+
+        // Service Feature
+        Route::controller(\App\Http\Controllers\ServiceFeatureController::class)->name('service-features.')->prefix('service-feature')->group(function(){
+            Route::get('/', 'index')->name('index');        
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');   
+            Route::get('edit/{feature}', 'edit')->name('edit');
+            Route::post('update/{feature}', 'update')->name('update');
+            Route::get('delete/{feature}', 'delete')->name('delete');
+        });
+
+
+        // Testimonial  
+
+        Route::controller(\App\Http\Controllers\TestimonialController::class)->name('testimonials.')->prefix('testimonial')->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('edit/{testimonial}', 'edit')->name('edit');
+            Route::post('update/{testimonial}', 'update')->name('update');
+            Route::get('delete/{testimonial}', 'delete')->name('delete');
+        });
+
+        // Logo
+        Route::controller(\App\Http\Controllers\LogoController::class)->name('logos.')->prefix('logo')->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create'); 
+            Route::post('store', 'store')->name('store');
+            Route::get('edit/{logo}', 'edit')->name('edit');
+            Route::post('update/{logo}', 'update')->name('update');
+            Route::get('delete/{logo}', 'delete')->name('delete');
+        });
 
         Route::controller(\App\Http\Controllers\CategoryController::class)->name('category.')->prefix('category')->group(function(){
             Route::get('/', 'index')->name('index');
