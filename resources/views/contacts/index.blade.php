@@ -54,7 +54,7 @@
                                            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">
                                             👁️ View
                                         </a>
-                                        <form action="{{ route('contact.delete', $contact->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this contact?');">
+                                        <form action="{{ route('contact.delete', $contact->id) }}" method="get" onsubmit="return confirm('Are you sure you want to delete this contact?');">
                                             @csrf
                                             <button type="submit"
                                                     class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">

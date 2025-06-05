@@ -213,7 +213,7 @@ Route::middleware('auth')->group(function () {
         Route::controller(\App\Http\Controllers\ContactController::class)->name('contact.')->prefix('contact')->group(function(){
            Route::get('index', 'index')->name('index');
            Route::get('show/{contact}', 'show')->name('show');
-           Route::post('delete', 'delete')->name('delete');
+           Route::get('delete', 'delete')->name('delete');
         });
 
         Route::controller(\App\Http\Controllers\BannerController::class)->name('banner.')->prefix('banner')->group(function(){

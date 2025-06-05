@@ -31,4 +31,10 @@ class ContactController extends Controller
     public function show(Contact $contact){
         return view('contacts.show', compact('contact'));
     }
+
+    public function delete(Contact $contact)
+    {
+        $contact->delete();
+        return back()->with('success', 'Contact deleted successfully');
+    }
 }
