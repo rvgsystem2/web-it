@@ -10,6 +10,7 @@ use App\Models\ChooseFeture;
 use App\Models\JobListing;
 use App\Models\Service;
 use App\Models\ServiceFeature;
+use App\Models\Team;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +34,9 @@ class HomeController extends Controller
     return view('frontend.contact');
    }
    public function faq(){
-    return view('frontend.faq');
+    // Fetch FAQs from the database
+    $faqs = \App\Models\Faq::where('status', 'active')->get();
+    return view('frontend.faq', compact('faqs'));
    }
    public function career(Request $request){
         $categories = Category::all();
@@ -50,7 +53,10 @@ class HomeController extends Controller
    }
 
    public function about(){
-    return view('frontend.about');
+      $abouts = About::all();
+      $logos = \App\Models\Logo::all();
+      $teams=Team::all();
+    return view('frontend.about', compact('abouts', 'logos', 'teams'));
    }
    public function jobs(){
     return view('frontend.jobs');
@@ -81,7 +87,8 @@ class HomeController extends Controller
     return view('frontend.iande_design');
    }
    public function blog(){
-    return view('frontend.blog');
+     $logos = \App\Models\Logo::all();
+    return view('frontend.blog', compact('logos'));
    }
    public function team(){
     return view('frontend.team');

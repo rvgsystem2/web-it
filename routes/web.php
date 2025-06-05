@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/contact/store', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
-Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
+Route::get('/faqs', [HomeController::class, 'faq'])->name('faq');
 Route::get('/career', [HomeController::class, 'career'])->name('career');
 Route::get('/careerByCategory/{category}', [HomeController::class, 'careerByCategory'])->name('careerByCategory');
 Route::get('/abouts', [HomeController::class, 'about'])->name('about');
@@ -42,7 +42,7 @@ Route::get('/cyber_security', [HomeController::class, 'cyber_security'])->name('
 Route::get('/web_development', [HomeController::class, 'web_development'])->name('web_development');
 Route::get('/iande_design', [HomeController::class, 'iande_design'])->name('iande_design');
 Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
-Route::get('/team', [HomeController::class, 'team'])->name('team');
+Route::get('/teams', [HomeController::class, 'team'])->name('team');
 Route::get('/privacy_policy', [HomeController::class, 'privacy_policy'])->name('privacy_policy');
 Route::get('/terms_condition', [HomeController::class, 'terms_condition'])->name('terms_condition');
 
@@ -126,7 +126,7 @@ Route::middleware('auth')->group(function () {
             Route::post('store', 'store')->name('store');
             Route::get('edit/{service}', 'edit')->name('edit');
             Route::post('update/{service}', 'update')->name('update');
-            Route::post('delete/{service}', 'delete')->name('delete');
+            Route::get('delete/{service}', 'delete')->name('delete');
         });
 
         // Service Feature
@@ -160,6 +160,28 @@ Route::middleware('auth')->group(function () {
             Route::post('update/{logo}', 'update')->name('update');
             Route::get('delete/{logo}', 'delete')->name('delete');
         });
+
+
+        // Team
+        Route::controller(\App\Http\Controllers\TeamController::class)->name('teams.')->prefix('team')->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('edit/{team}', 'edit')->name('edit');
+            Route::post('update/{team}', 'update')->name('update');
+            Route::get('delete/{team}', 'delete')->name('delete');
+        });
+
+        // faq
+        Route::controller(\App\Http\Controllers\FaqController::class)->name('faqs.')->prefix('faq')->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('edit/{faq}', 'edit')->name('edit');
+            Route::post('update/{faq}', 'update')->name('update');
+            Route::get('delete/{faq}', 'delete')->name('delete');
+        });
+
 
         Route::controller(\App\Http\Controllers\CategoryController::class)->name('category.')->prefix('category')->group(function(){
             Route::get('/', 'index')->name('index');

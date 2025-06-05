@@ -221,7 +221,7 @@
 
 
     <!-- Quote Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    {{-- <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-7">
@@ -288,7 +288,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Quote End -->
 
 

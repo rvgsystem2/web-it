@@ -352,10 +352,13 @@
         <div class="container py-5 mb-5">
             <div class="bg-white">
                 <div class="owl-carousel vendor-carousel">
-                   <img src="{{asset('asset/img/1-MHGlobals.jpg')}}" alt="">
-                    <img src="{{asset('asset/img/4-febonic.jpg')}}" alt="">
-                    <img src="{{asset('asset/img/2-energyspark.jpg')}}" alt="">
-                    <img src="{{asset('asset/img/3-yewbelle.jpeg')}}" alt="">
+                    @forelse ($logos as $logo)
+                        <img src="{{ 'storage/' . $logo->image }}" alt="{{ $logo->name }}">
+                    @empty
+                        <p>No logos found.</p>
+                    @endforelse
+                 
+                    
                 </div>
             </div>
         </div>

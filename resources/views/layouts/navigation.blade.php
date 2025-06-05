@@ -98,7 +98,15 @@
             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
             <i class="fas fa-info-circle mr-2"></i> About
         </x-nav-link>
+        <x-nav-link :href="route('teams.index')" :active="request()->routeIs('team*')"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-users mr-2"></i> Team
+        </x-nav-link>
 
+        <x-nav-link :href="route('faqs.index')" :active="request()->routeIs('faq*')"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-question-circle mr-2"></i> FAQs
+        </x-nav-link>
         <x-nav-link :href="route('chooses.index')" :active="request()->routeIs('chooses*')"
             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
             <i class="fas fa-check-circle mr-2"></i> Why Choose Us

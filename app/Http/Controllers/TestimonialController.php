@@ -62,7 +62,7 @@ class TestimonialController extends Controller
         return redirect()->route('testimonials.index')->with('success', 'Testimonial updated successfully.');
     }
 
-    public function destroy(Testimonial $testimonial)
+    public function delete(Testimonial $testimonial)
     {
         // Optionally, you can delete the image file if it exists
         if ($testimonial->image) {
