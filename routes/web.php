@@ -41,7 +41,8 @@ Route::get('/bussiness_solution', [HomeController::class, 'bussiness_solution'])
 Route::get('/cyber_security', [HomeController::class, 'cyber_security'])->name('cyber_security');
 Route::get('/web_development', [HomeController::class, 'web_development'])->name('web_development');
 Route::get('/iande_design', [HomeController::class, 'iande_design'])->name('iande_design');
-Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
+Route::get('/blogs', [HomeController::class, 'blog'])->name('blog');
+Route::get('/blog-details/{blog}', [HomeController::class, 'blogDetails'])->name('blog.details');
 Route::get('/teams', [HomeController::class, 'team'])->name('team');
 Route::get('/privacy_policy', [HomeController::class, 'privacy_policy'])->name('privacy_policy');
 Route::get('/terms_condition', [HomeController::class, 'terms_condition'])->name('terms_condition');
@@ -182,6 +183,16 @@ Route::middleware('auth')->group(function () {
             Route::get('delete/{faq}', 'delete')->name('delete');
         });
 
+        // Blog
+
+        Route::controller(\App\Http\Controllers\BlogController::class)->name('blogs.')->prefix('blog')->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('edit/{blog}', 'edit')->name('edit');
+            Route::post('update/{blog}', 'update')->name('update');
+            Route::get('delete/{blog}', 'delete')->name('delete');
+        });
 
         Route::controller(\App\Http\Controllers\CategoryController::class)->name('category.')->prefix('category')->group(function(){
             Route::get('/', 'index')->name('index');

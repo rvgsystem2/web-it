@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\About;
 use App\Models\Banner;
+use App\Models\blog;
 use App\Models\Category;
 use App\Models\Choose;
 use App\Models\ChooseFeture;
@@ -86,10 +87,27 @@ class HomeController extends Controller
    public function iande_design(){
     return view('frontend.iande_design');
    }
-   public function blog(){
-     $logos = \App\Models\Logo::all();
-    return view('frontend.blog', compact('logos'));
-   }
+public function blog()
+{
+    $logos = \App\Models\Logo::all();
+    $blogs = blog::where('status', 'published')->latest()->get();
+
+    $recentBlogs = blog::where('status', 'published')->latest()->take(3)->get();
+    $categories = blog::whereNotNull('category')->pluck('category')->unique();
+
+    return view('frontend.blog', compact('logos', 'blogs', 'recentBlogs', 'categories'));
+}
+
+public function blogDetails($id)
+{
+    // dd($id);
+    $blog = blog::findOrFail($id);
+    $recentBlogs = blog::where('status', 'published')->where('id', '!=', $id)->latest()->take(3)->get();
+
+    return view('frontend.blogdetails', compact('blog', 'recentBlogs'));
+}
+
+
    public function team(){
     return view('frontend.team');
    }
