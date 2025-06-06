@@ -62,11 +62,11 @@
                         <a href="{{ route('contact') }}" class="nav-link {{ request()->is('contact') ? 'active' : '' }}">Contact</a>
                     </li>
 
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="{{ route('dashboard') }}" class="nav-link">
                             <i class="fas fa-user"></i>
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>
