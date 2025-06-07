@@ -31,7 +31,7 @@
                     <tbody class="bg-white divide-y divide-gray-100">
                         @forelse ($features as $feature)
                             <tr class="hover:bg-gray-50 transition">
-                                <td class="px-6 py-4">{{ $feature->id }}</td>
+                                <td class="px-6 py-4">{{$loop->iteration}}</td>
                                 <td class="px-6 py-4">{{ $feature->title }}</td>
                                 <td class="px-6 py-4">{{ $feature->sub_title }}</td>
                                 <td class="px-6 py-4">
@@ -50,7 +50,7 @@
                                         </a>
                                         <form action="{{ route('service-features.delete', $feature->id) }}" method="get" onsubmit="return confirm('Are you sure?');">
                                             @csrf
-                                          
+
                                             <button type="submit"
                                                     class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">
                                                 🗑️ Delete

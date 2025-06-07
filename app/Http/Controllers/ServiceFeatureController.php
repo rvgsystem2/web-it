@@ -9,7 +9,7 @@ class ServiceFeatureController extends Controller
 {
      public function index()
     {
-        $features = ServiceFeature::latest()->get();
+        $features = ServiceFeature::all();
         return view('service_feature.index', compact('features'));
     }
 

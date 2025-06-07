@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class ChooseFetureController extends Controller
 {
-    
+
     public function index()
     {
-        $features = ChooseFeture::latest()->get();
+        $features = ChooseFeture::all();
         return view('choose_feature.index', compact('features'));
     }
 

@@ -552,9 +552,9 @@
                             @php
                                 $ifExists = \App\Models\JobApplication::where('job_id', $job->id)->where('user_id', auth()->user()->id)->exists();
                             @endphp
-                            <button class="btn btn-success" disabled>Applied</button>
+                            <button class="btn btn-success" disabled>Apply Now</button>
                         @else
-                            <a href="{{route('applyForJob', ['job'=> $job->id])}}" class="btn">Apply Now</a>
+                            <a href="{{route('applyForJob', ['job'=> $job->id])}}" class="btn">Applied</a>
                         @endif
                     </div>
                 @endforeach

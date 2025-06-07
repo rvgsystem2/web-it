@@ -1,5 +1,45 @@
 @extends('component.main')
 @section('content')
+<style>
+    .accordion-item {
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    .accordion-button {
+        width: 100%;
+        padding: 15px;
+        text-align: left;
+        background: #f8f9fa;
+        border: none;
+        cursor: pointer;
+        font-weight: 500;
+        position: relative;
+    }
+
+    .accordion-button::after {
+        content: '+';
+        position: absolute;
+        right: 15px;
+        font-size: 18px;
+    }
+
+    .accordion-button[aria-expanded="true"]::after {
+        content: '-';
+    }
+
+    .accordion-content {
+        display: none;
+        padding: 15px;
+        background: #fff;
+    }
+
+    .accordion-body {
+        line-height: 1.6;
+    }
+</style>
+
     <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -36,7 +76,7 @@
 
 
         <!--=========FAQ START============-->
-        <section class="wsus__faq mt_45 mb_45">
+        {{-- <section class="wsus__faq mt_45 mb_45">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
@@ -63,53 +103,69 @@
                                     @empty
                                         <p>No FAQs available.</p>
                                     @endforelse
-                                   
-                                   
+
+
 
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-        </section>
+        </section> --}}
         <!--=========FAQ END==========-->
+        <section class="wsus__faq mt_45 mb_45">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="wsus__faq_accordian">
+                            <div id="wsus__accordian">
+                                @forelse ($faqs as $f)
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-heading-{{ $loop->index }}">
+                                            <button class="accordion-button" type="button"
+                                                aria-expanded="false"
+                                                aria-controls="flush-collapse-{{ $loop->index }}">
+                                                {{ $f->question }}
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapse-{{ $loop->index }}"
+                                            class="accordion-content"
+                                            aria-labelledby="flush-heading-{{ $loop->index }}">
+                                            <div class="accordion-body">
+                                                {{ $f->answer }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                @empty
+                                    <p>No FAQs available.</p>
+                                @endforelse
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-
-
-
-
-
-
-
-
-
-
-
-        <script src="user/js/cookieconsent.min.js"></script>
 
         <script>
-            window.addEventListener("load", function() {
-                window.wpcc.init({
-                    "border": "thin",
-                    "corners": "normal",
-                    "colors": {
-                        "popup": {
-                            "background": "#184dec",
-                            "text": "#fafafa !important",
-                            "border": "#0a58d6"
-                        },
-                        "button": {
-                            "background": "#fffceb",
-                            "text": "#000000"
+            document.addEventListener('DOMContentLoaded', function() {
+                const accordionButtons = document.querySelectorAll('.accordion-button');
+
+                accordionButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                        this.setAttribute('aria-expanded', !isExpanded);
+
+                        const targetId = this.getAttribute('aria-controls');
+                        const targetContent = document.getElementById(targetId);
+
+                        if (isExpanded) {
+                            targetContent.style.display = 'none';
+                        } else {
+                            targetContent.style.display = 'block';
                         }
-                    },
-                    "content": {
-                        "href": "http://cybrexus.com/privacy-policy",
-                        "message": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the when an unknown printer took.",
-                        "link": "More Info",
-                        "button": "Yes"
-                    }
-                })
+                    });
+                });
             });
         </script>
     @endsection
