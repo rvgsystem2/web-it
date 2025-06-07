@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\blogController;
 use App\Http\Controllers\ChooseController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
@@ -185,7 +186,7 @@ Route::middleware('auth')->group(function () {
 
         // Blog
 
-        Route::controller(\App\Http\Controllers\BlogController::class)->name('blogs.')->prefix('blog')->group(function(){
+        Route::controller(blogController::class)->name('blogs.')->prefix('blog')->group(function(){
             Route::get('/', 'index')->name('index');
             Route::get('create', 'create')->name('create');
             Route::post('store', 'store')->name('store');
