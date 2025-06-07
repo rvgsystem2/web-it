@@ -2,6 +2,7 @@
 @section('content')
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
         :root {
             --primary: #2c3e50;
@@ -30,6 +31,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            margin-top: 40px;
         }
 
         /* Header Styles */
@@ -436,6 +438,7 @@
             <h1>Build Your Future With Cybrexus</h1>
             <p>Join our team of innovators and help shape the future of technology. At Cybrexus, we're building solutions that matter.</p>
             <a href="#positions" class="btn btn-accent">View Open Positions</a>
+            <a href="{{ route('dashboard') }}" class="btn btn-accent"> <i class="fas fa-user space-x-2"></i> Login</a>
         </div>
     </header>
 
