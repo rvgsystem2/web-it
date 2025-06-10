@@ -59,6 +59,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware(\App\Http\Middleware\RoleMiddleware::class)->group(function(){
         Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+        Route::get('/users', [DashboardController::class, 'users'])->name('users');
 
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

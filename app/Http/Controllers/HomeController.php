@@ -41,9 +41,11 @@ class HomeController extends Controller
    }
    public function career(Request $request){
         $categories = Category::all();
+        $slug = null;
         if ($request->slug){
             $category = Category::where('slug', $request->slug)->first();
             $jobs = JobListing::where('category_id', $category->id)->get();
+            $slug = $category->slug;
         }elseif($request->keywords){
             $jobs = JobListing::where('skills', 'LIKE', "%$request->keywords%")->get();
         }else{
@@ -51,7 +53,7 @@ class HomeController extends Controller
         }
 
 
-        return view('frontend.career', compact('categories', 'jobs'));
+        return view('frontend.career', compact('categories', 'jobs', 'slug'));
    }
 
    public function about(){

@@ -515,12 +515,12 @@
                 <button type="submit"  class="filter-btn" data-filter="engineering">Search</button>
             </form>
             <div class="position-filter">
-                <a href="{{route('career')}}" class="filter-btn active" data-filter="all">All Positions</a>
+                <a href="{{route('career')}}" class="filter-btn {{$slug ? '' : 'active'}} " data-filter="all">All Positions</a>
 
                 @foreach($categories as $category)
                     <form action="{{route('career')}}">
                         <input type="hidden" name="slug" value="{{$category->slug}}">
-                    <button type="submit"  class="filter-btn" data-filter="engineering">{{$category->name}}</button>
+                    <button type="submit"  class="filter-btn {{$slug == $category->slug ? 'active' : ''}}" data-filter="engineering">{{$category->name}}</button>
                     </form>
                 @endforeach
 
@@ -550,12 +550,18 @@
                         <p>{!! $job->description !!}</p>
                         @if(auth()->check())
                             @php
-                                $ifExists = \App\Models\JobApplication::where('job_id', $job->id)->where('user_id', auth()->user()->id)->exists();
+                                $hasApplied = auth()->user()->jobApplications()->where('job_id', $job->id)->exists();
                             @endphp
-                            <button class="btn btn-success" disabled>Apply Now</button>
+
+                            @if($hasApplied)
+                                <button class="btn btn-success" disabled>Already Applied</button>
+                            @else
+                                <a href="{{ route('applyForJob', ['job' => $job->id]) }}" class="btn btn-primary">Apply Now</a>
+                            @endif
                         @else
-                            <a href="{{route('applyForJob', ['job'=> $job->id])}}" class="btn">Applied</a>
+                            <a href="{{ route('login') }}" class="btn btn-warning">Login to Apply</a>
                         @endif
+
                     </div>
                 @endforeach
 

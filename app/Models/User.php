@@ -49,8 +49,12 @@ class User extends Authenticatable
     }
 
     public function businesses()
-{
-    return $this->hasMany(Business::class);
-}
+    {
+        return $this->hasMany(Business::class);
+    }
+
+    public function jobApplications(){
+        return $this->hasMany(JobApplication::class, 'user_id');
+    }
 
 }
