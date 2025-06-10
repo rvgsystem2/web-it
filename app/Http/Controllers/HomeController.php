@@ -49,7 +49,7 @@ class HomeController extends Controller
         }else{
             $jobs = JobListing::all();
         }
-        
+
 
         return view('frontend.career', compact('categories', 'jobs'));
    }

@@ -133,16 +133,16 @@ Route::middleware('auth')->group(function () {
 
         // Service Feature
         Route::controller(\App\Http\Controllers\ServiceFeatureController::class)->name('service-features.')->prefix('service-feature')->group(function(){
-            Route::get('/', 'index')->name('index');        
+            Route::get('/', 'index')->name('index');
             Route::get('create', 'create')->name('create');
-            Route::post('store', 'store')->name('store');   
+            Route::post('store', 'store')->name('store');
             Route::get('edit/{feature}', 'edit')->name('edit');
             Route::post('update/{feature}', 'update')->name('update');
             Route::get('delete/{feature}', 'delete')->name('delete');
         });
 
 
-        // Testimonial  
+        // Testimonial
 
         Route::controller(\App\Http\Controllers\TestimonialController::class)->name('testimonials.')->prefix('testimonial')->group(function(){
             Route::get('/', 'index')->name('index');
@@ -156,7 +156,7 @@ Route::middleware('auth')->group(function () {
         // Logo
         Route::controller(\App\Http\Controllers\LogoController::class)->name('logos.')->prefix('logo')->group(function(){
             Route::get('/', 'index')->name('index');
-            Route::get('create', 'create')->name('create'); 
+            Route::get('create', 'create')->name('create');
             Route::post('store', 'store')->name('store');
             Route::get('edit/{logo}', 'edit')->name('edit');
             Route::post('update/{logo}', 'update')->name('update');
