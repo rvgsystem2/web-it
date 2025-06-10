@@ -219,95 +219,87 @@
                 </p>
             </div>
 
-<<<<<<< HEAD
             <form action="{{route('career')}}">
                 <input type="text" name="keywords" placeholder="Keywords" >
                 <button type="submit"  class="filter-btn" data-filter="engineering">Search</button>
             </form>
             <div class="position-filter">
                 <a href="{{route('career')}}" class="filter-btn {{$slug ? '' : 'active'}} " data-filter="all">All Positions</a>
-=======
-            <div class="row justify-content-center mb-4">
-                <div class="col-lg-8">
-                    <form action="{{route('career')}}" class="row g-2">
-                        <div class="col-md-8">
-                            <input type="text" name="keywords" class="form-control form-control-lg" placeholder="Keywords">
-                        </div>
-                        <div class="col-md-4">
-                            <button type="submit" class="btn btn-primary btn-lg w-100">Search</button>
-                        </div>
-                    </form>
+                <div class="row justify-content-center mb-4">
+                    <div class="col-lg-8">
+                        <form action="{{route('career')}}" class="row g-2">
+                            <div class="col-md-8">
+                                <input type="text" name="keywords" class="form-control form-control-lg" placeholder="Keywords">
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary btn-lg w-100">Search</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
->>>>>>> 456c63e36abdf3dd5c9e8de276f6fff9a6a57359
 
-            <div class="position-filter d-flex flex-wrap justify-content-center gap-2 mb-5">
-                <a href="{{route('career')}}" class="btn btn-primary active">All Positions</a>
-                @foreach($categories as $category)
-                    <form action="{{route('career')}}">
-                        <input type="hidden" name="slug" value="{{$category->slug}}">
-<<<<<<< HEAD
-                    <button type="submit"  class="filter-btn {{$slug == $category->slug ? 'active' : ''}}" data-filter="engineering">{{$category->name}}</button>
-=======
-                        <button type="submit" class="btn btn-outline-primary">{{$category->name}}</button>
->>>>>>> 456c63e36abdf3dd5c9e8de276f6fff9a6a57359
-                    </form>
-                @endforeach
-            </div>
+                <div class="position-filter d-flex flex-wrap justify-content-center gap-2 mb-5">
+                    <a href="{{route('career')}}" class="btn btn-primary active">All Positions</a>
+                    @foreach($categories as $category)
+                        <form action="{{route('career')}}">
+                            <input type="hidden" name="slug" value="{{$category->slug}}">
+                        <button type="submit"  class="filter-btn {{$slug == $category->slug ? 'active' : ''}}" data-filter="engineering">{{$category->name}}</button>
+                            <button type="submit" class="btn btn-outline-primary">{{$category->name}}</button>
+                        </form>
+                    @endforeach
+                </div>
 
-            <div class="positions-list">
-                @foreach($jobs as $job)
-                    <div class="position-card card mb-4 shadow-sm" data-category="engineering">
-                        <div class="card-body">
-                            <h3 class="h4 card-title">{{$job->title}}</h3>
-                            <div class="position-meta d-flex flex-wrap align-items-center mb-3 text-muted">
-                                <span class="me-3"><i class="fas fa-map-marker-alt me-1"></i> {{$job->location}}</span>
-                                <span class="me-3"><i class="fas fa-briefcase me-1"></i> {{$job->job_type}}</span>
-                                <span class="me-3"><i class="fas fa-clock me-1"></i> {{$job->created_at->diffForHumans()}}</span>
-                                @if($job->salary_range)
-                                    <span class="me-3"><i class="fas fa-dollar-sign me-1"></i> {{$job->salary_range}}</span>
+                <div class="positions-list">
+                    @foreach($jobs as $job)
+                        <div class="position-card card mb-4 shadow-sm" data-category="engineering">
+                            <div class="card-body">
+                                <h3 class="h4 card-title">{{$job->title}}</h3>
+                                <div class="position-meta d-flex flex-wrap align-items-center mb-3 text-muted">
+                                    <span class="me-3"><i class="fas fa-map-marker-alt me-1"></i> {{$job->location}}</span>
+                                    <span class="me-3"><i class="fas fa-briefcase me-1"></i> {{$job->job_type}}</span>
+                                    <span class="me-3"><i class="fas fa-clock me-1"></i> {{$job->created_at->diffForHumans()}}</span>
+                                    @if($job->salary_range)
+                                        <span class="me-3"><i class="fas fa-dollar-sign me-1"></i> {{$job->salary_range}}</span>
+                                    @endif
+                                </div>
+                                <div class="mb-3">
+                                    @php
+                                        $skills = preg_split('/[\s,]+/', $job->skills);
+                                    @endphp
+                                    @foreach($skills as $value)
+                                        @if(!empty($value))
+                                            <span class="badge bg-primary me-2 mb-2">{{ $value }}</span>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <div class="card-text mb-4">{!! $job->description !!}</div>
+                                @if(auth()->check())
+                                    @php
+                                        $ifExists = \App\Models\JobApplication::where('job_id', $job->id)->where('user_id', auth()->user()->id)->exists();
+                                    @endphp
+                                    <button class="btn btn-success" disabled>Applied</button>
+                                @else
+                                    <a href="{{route('applyForJob', ['job'=> $job->id])}}" class="btn btn-primary">Apply Now</a>
                                 @endif
                             </div>
-                            <div class="mb-3">
-                                @php
-                                    $skills = preg_split('/[\s,]+/', $job->skills);
-                                @endphp
-                                @foreach($skills as $value)
-                                    @if(!empty($value))
-                                        <span class="badge bg-primary me-2 mb-2">{{ $value }}</span>
-                                    @endif
-                                @endforeach
-                            </div>
-                            <div class="card-text mb-4">{!! $job->description !!}</div>
+                            <p>{!! $job->description !!}</p>
                             @if(auth()->check())
                                 @php
-                                    $ifExists = \App\Models\JobApplication::where('job_id', $job->id)->where('user_id', auth()->user()->id)->exists();
+                                    $hasApplied = auth()->user()->jobApplications()->where('job_id', $job->id)->exists();
                                 @endphp
-                                <button class="btn btn-success" disabled>Applied</button>
+
+                                @if($hasApplied)
+                                    <button class="btn btn-success" disabled>Already Applied</button>
+                                @else
+                                    <a href="{{ route('applyForJob', ['job' => $job->id]) }}" class="btn btn-primary">Apply Now</a>
+                                @endif
                             @else
-                                <a href="{{route('applyForJob', ['job'=> $job->id])}}" class="btn btn-primary">Apply Now</a>
+                                <a href="{{ route('login') }}" class="btn btn-warning">Login to Apply</a>
                             @endif
+
                         </div>
-<<<<<<< HEAD
-                        <p>{!! $job->description !!}</p>
-                        @if(auth()->check())
-                            @php
-                                $hasApplied = auth()->user()->jobApplications()->where('job_id', $job->id)->exists();
-                            @endphp
-
-                            @if($hasApplied)
-                                <button class="btn btn-success" disabled>Already Applied</button>
-                            @else
-                                <a href="{{ route('applyForJob', ['job' => $job->id]) }}" class="btn btn-primary">Apply Now</a>
-                            @endif
-                        @else
-                            <a href="{{ route('login') }}" class="btn btn-warning">Login to Apply</a>
-                        @endif
-
-=======
->>>>>>> 456c63e36abdf3dd5c9e8de276f6fff9a6a57359
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
     </section>
