@@ -210,7 +210,7 @@
     </section>
 
     <!-- Open Positions Section -->
-    <section class="open-positions py-5 bg-light" id="positions">
+    {{-- <section class="open-positions py-5 bg-light" id="positions">
         <div class="container py-4">
             <div class="section-title text-center mb-5">
                 <h2 class="display-5 fw-bold mb-3">Open Positions</h2>
@@ -299,6 +299,85 @@
                         </div>
                     @endforeach
                 </div>
+            </div>
+        </div>
+    </section> --}}
+
+    <section class="open-positions py-5 bg-light" id="positions">
+        <div class="container py-4">
+            <div class="section-title text-center mb-5">
+                <h2 class="display-5 fw-bold mb-3">Open Positions</h2>
+                <p class="lead text-muted mx-auto" style="max-width: 700px;">
+                    Explore our current job openings and find the perfect fit for your skills and aspirations.
+                </p>
+            </div>
+
+            <div class="row justify-content-center mb-4">
+                <div class="col-lg-8">
+                    <form action="{{route('career')}}" class="row g-2">
+                        <div class="col-md-8">
+                            <input type="text" name="keywords" class="form-control form-control-lg" placeholder="Keywords" value="{{ request('keywords') }}">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary btn-lg w-100">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="position-filter d-flex flex-wrap justify-content-center gap-2 mb-5">
+                <a href="{{route('career')}}" class="btn btn-outline-primary {{ empty($slug) ? 'active' : '' }}">All Positions</a>
+                @foreach($categories as $category)
+                    <form action="{{route('career')}}">
+                        <input type="hidden" name="slug" value="{{$category->slug}}">
+                        <button type="submit" class="btn btn-outline-primary {{ $slug == $category->slug ? 'active' : '' }}">
+                            {{$category->name}}
+                        </button>
+                    </form>
+                @endforeach
+            </div>
+
+            <div class="positions-list">
+                @foreach($jobs as $job)
+                    <div class="position-card card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="h4 card-title">{{$job->title}}</h3>
+                            <div class="position-meta d-flex flex-wrap align-items-center mb-3 text-muted">
+                                <span class="me-3"><i class="fas fa-map-marker-alt me-1"></i> {{$job->location}}</span>
+                                <span class="me-3"><i class="fas fa-briefcase me-1"></i> {{$job->job_type}}</span>
+                                <span class="me-3"><i class="fas fa-clock me-1"></i> {{$job->created_at->diffForHumans()}}</span>
+                                @if($job->salary_range)
+                                    <span class="me-3"><i class="fas fa-dollar-sign me-1"></i> {{$job->salary_range}}</span>
+                                @endif
+                            </div>
+                            <div class="mb-3">
+                                @php
+                                    $skills = preg_split('/[\s,]+/', $job->skills);
+                                @endphp
+                                @foreach($skills as $value)
+                                    @if(!empty($value))
+                                        <span class="badge bg-primary me-2 mb-2">{{ $value }}</span>
+                                    @endif
+                                @endforeach
+                            </div>
+                            <div class="card-text mb-4">{!! $job->description !!}</div>
+
+                            @auth
+                                @php
+                                    $hasApplied = auth()->user()->jobApplications()->where('job_id', $job->id)->exists();
+                                @endphp
+
+                                @if($hasApplied)
+                                    <button class="btn btn-success" disabled>Already Applied</button>
+                                @else
+                                    <a href="{{ route('applyForJob', ['job' => $job->id]) }}" class="btn btn-primary">Apply Now</a>
+                                @endif
+                            @else
+                                <a href="{{ route('login') }}" class="btn btn-warning">Login to Apply</a>
+                            @endauth
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
