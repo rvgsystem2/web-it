@@ -243,8 +243,7 @@
                     @foreach($categories as $category)
                         <form action="{{route('career')}}">
                             <input type="hidden" name="slug" value="{{$category->slug}}">
-                        <button type="submit"  class="filter-btn {{$slug == $category->slug ? 'active' : ''}}" data-filter="engineering">{{$category->name}}</button>
-                            <button type="submit" class="btn btn-outline-primary">{{$category->name}}</button>
+                            <button type="submit" class="btn btn-outline-primary {{$slug == $category->slug ? 'group-active' : ''}}">{{$category->name}}</button>
                         </form>
                     @endforeach
                 </div>
