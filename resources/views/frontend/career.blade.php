@@ -102,9 +102,15 @@
                     <p class="lead mb-5">Join our team of innovators and help shape the future of technology. At Cybrexus, we're building solutions that matter.</p>
                     <div class="d-flex gap-3 justify-content-center">
                         <a href="#positions" class="btn btn-accent btn-lg px-4">View Open Positions</a>
-                        <a href="{{ route('dashboard') }}" class="btn btn-light btn-lg px-4">
-                            <i class="fas fa-user me-2"></i> Login
-                        </a>
+                        @if(auth()->check())
+                            <a href="{{ route('userProfile') }}" class="btn btn-light btn-lg px-4">
+                                <i class="fas fa-user me-2"></i> Profile
+                            </a>
+                        @else
+                            <a href="{{ route('dashboard') }}" class="btn btn-light btn-lg px-4">
+                                <i class="fas fa-user me-2"></i> Login
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
