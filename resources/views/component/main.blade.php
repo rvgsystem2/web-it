@@ -9,7 +9,7 @@
     <meta content="We build a better future with the tech" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    {{-- <link href="img/favicon.ico" rel="icon"> --}}
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,7 +36,7 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-    <link rel="shortcut icon" type="image/jpg" href="#" />
+    {{-- <link rel="shortcut icon" type="image/jpg" href="#" /> --}}
 </head>
 
 <body>
