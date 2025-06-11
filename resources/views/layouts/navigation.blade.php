@@ -142,7 +142,7 @@
                             </x-nav-link>
                                 @endcan
 
-                                @can('view choose')
+                                @can('view choose us')
                             <x-nav-link :href="route('chooses.index')" :active="request()->routeIs('chooses*')"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                 <i class="fas fa-check-circle mr-2"></i> Why Choose Us

@@ -4,10 +4,12 @@
             <h2 class="font-bold text-2xl text-gray-800">
                 {{ __('Choose Features Management') }}
             </h2>
+            @can('add feature')
             <a href="{{ route('choose-features.create') }}"
                class="px-5 py-2 bg-gradient-to-r from-[#c21108] to-[#000308] text-white font-semibold rounded-lg shadow-md hover:from-[#000308] hover:to-[#c21108] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#c21108] transition duration-300 ease-in-out">
                 + Add Feature
             </a>
+            @endcan
         </div>
     </x-slot>
 
@@ -55,10 +57,13 @@
                                     </td>
                                     <td class="px-6 py-4 text-center">
                                         <div class="flex justify-center gap-3">
+                                            @can('edit feature')
                                             <a href="{{ route('choose-features.edit', $feature->id) }}"
                                                 class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">
                                                 ✏️ Edit
                                             </a>
+                                            @endcan
+                                            @can('delete feature')
                                             <form action="{{ route('choose-features.delete', $feature->id) }}" method="get" onsubmit="return confirm('Are you sure you want to delete this feature?');">
                                                 @csrf
 
@@ -67,6 +72,7 @@
                                                     🗑️ Delete
                                                 </button>
                                             </form>
+                                                @endcan
                                         </div>
                                     </td>
                                 </tr>

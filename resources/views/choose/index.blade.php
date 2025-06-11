@@ -4,16 +4,18 @@
             <h2 class="font-bold text-2xl text-gray-800">
                 {{ __('Why Choose Us - Management') }}
             </h2>
-            <a href="{{ route('chooses.create') }}" 
+            @can('add choose item')
+            <a href="{{ route('chooses.create') }}"
                class="px-5 py-2 bg-gradient-to-r from-[#c21108] to-[#000308] text-white font-semibold rounded-lg shadow-md hover:from-[#000308] hover:to-[#c21108] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#c21108] transition duration-300 ease-in-out">
                 + Add Choose Item
             </a>
+            @endcan
         </div>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            
+
             @if (session('success'))
                 <div class="flex items-center bg-green-100 text-green-700 px-4 py-3 rounded-lg mb-6 shadow-md">
                     <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -54,18 +56,22 @@
                                     </td>
                                     <td class="px-6 py-4 text-center">
                                         <div class="flex justify-center gap-3">
+                                            @can('edit choose item')
                                             <a href="{{ route('chooses.edit', $choose->id) }}"
                                                 class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">
                                                 ✏️ Edit
                                             </a>
+                                            @endcan
+                                            @can('delete choose itme')
                                             <form action="{{ route('chooses.delete', $choose->id) }}" method="get" onsubmit="return confirm('Are you sure you want to delete this item?');">
                                                 @csrf
-                                             
+
                                                 <button type="submit"
                                                     class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">
                                                     🗑️ Delete
                                                 </button>
                                             </form>
+                                            @endcan
                                         </div>
                                     </td>
                                 </tr>

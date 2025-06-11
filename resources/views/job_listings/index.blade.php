@@ -4,10 +4,12 @@
             <h2 class="font-bold text-2xl text-gray-800">
                 {{ __('Job Listings Management') }}
             </h2>
+            @can('post job')
             <a href="{{ route('job.create') }}"
                class="px-5 py-2 bg-gradient-to-r from-[#16a34a] to-[#065f46] text-white font-semibold rounded-lg shadow-md hover:from-[#065f46] hover:to-[#16a34a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#16a34a] transition duration-300 ease-in-out">
                 + Post Job
             </a>
+            @endcan
         </div>
     </x-slot>
 
@@ -58,10 +60,13 @@
                                 </td>
                                 <td class="px-6 py-4 text-center">
                                     <div class="flex justify-center gap-3">
+                                        @can('edit job')
                                         <a href="{{ route('job.edit', $job->id) }}"
                                            class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">
                                             ✏️ Edit
                                         </a>
+                                        @endcan
+                                        @can('delete job')
                                         <form action="{{ route('job.delete', $job->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this job?');">
                                             @csrf
                                             <button type="submit"
@@ -69,6 +74,7 @@
                                                 🗑️ Delete
                                             </button>
                                         </form>
+                                        @endcan
                                     </div>
                                 </td>
                             </tr>
