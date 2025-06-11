@@ -8,9 +8,7 @@
     <meta content="Cybrexus" name="keywords">
     <meta content="We build a better future with the tech" name="description">
 
-    <!-- Favicon -->
-    {{-- <link href="img/favicon.ico" rel="icon"> --}}
-
+  
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

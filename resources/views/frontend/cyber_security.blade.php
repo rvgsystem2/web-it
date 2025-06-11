@@ -1,8 +1,5 @@
 @extends('component.main')
 @section('content')
-<!DOCTYPE html>
-<html lang="en">
-
 
   <!-- Navbar & Carousel Start -->
     <div class="container-fluid position-relative p-0">
