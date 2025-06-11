@@ -26,25 +26,11 @@ class PermissionsTableSeeder extends Seeder
             'edit permission',
             'delete permission',
             'create permission',
-            'view business',
-            'edit business',
-            'delete business',
-            'create business',
-            'rating business',
-            'show qr',
-            'assign permissions user',
-            'view qrcodes',
-            'view shorturls',
-            'create shorturls ',
-            'edit shorturls',
-            'delete shorturls', 
-        
-
         ];
 
         foreach ($permissions as $permission) {
             Permission::firstOrCreate(['name' => $permission]);
         }
     }
-    
+
 }
