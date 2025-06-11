@@ -56,7 +56,7 @@
                         <i class="fas fa-tachometer-alt mr-1"></i> Contact
                     </x-nav-link>
 
-             
+
                     <x-nav-link :href="route('services.index')" :active="request()->routeIs('services*')">
                         <i class="fas fa-cogs mr-1"></i> ServicesTitle
                     </x-nav-link>
@@ -66,7 +66,7 @@
                     <x-nav-link :href="route('testimonials.index')" :active="request()->routeIs('testimonial*')">
                         <i class="fas fa-comments mr-1"></i> Testimonials
                     </x-nav-link>
-               
+
                     <x-nav-link :href="route('logos.index')" :active="request()->routeIs('logos*')">
                         <i class="fas fa-image mr-1"></i> Logos
                     </x-nav-link>
@@ -128,7 +128,7 @@
 
 
 
-                  
+
 
 
                     <!-- Dropdown for Roles, Permissions, Users -->

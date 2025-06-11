@@ -36,7 +36,7 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-    <link rel="shortcut icon" type="image/jpg" href="/favicon.png" />
+    <link rel="shortcut icon" type="image/jpg" href="#" />
 </head>
 
 <body>
