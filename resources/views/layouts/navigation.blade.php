@@ -19,38 +19,38 @@
                         <i class="fas fa-tachometer-alt mr-1"></i> Dashboard
                     </x-nav-link>
 
-                  <!-- Dropdown Navigation -->
-<div x-data="{ open: false }" class="relative">
-    <button @click="open = !open"
-        class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 w-full rounded-md focus:outline-none">
-        <i class="fas fa-briefcase mr-2"></i> Job Module
-        <svg class="ml-auto h-4 w-4 transform transition-transform duration-200"
-             :class="{ 'rotate-180': open }"
-             fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M19 9l-7 7-7-7"/>
-        </svg>
-    </button>
+                    <!-- Dropdown Navigation -->
+                    <div x-data="{ open: false }" class="relative">
+                        <button @click="open = !open"
+                            class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 w-full rounded-md focus:outline-none">
+                            <i class="fas fa-briefcase mr-2"></i> Job Module
+                            <svg class="ml-auto h-4 w-4 transform transition-transform duration-200"
+                                 :class="{ 'rotate-180': open }"
+                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
 
-    <div x-show="open" @click.away="open = false"
-         x-transition
-         class="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200">
-        <x-nav-link :href="route('category.index')" :active="request()->routeIs('category*')"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-            <i class="fas fa-list mr-2"></i> Category
-        </x-nav-link>
+                        <div x-show="open" @click.away="open = false"
+                             x-transition
+                             class="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200">
+                            <x-nav-link :href="route('category.index')" :active="request()->routeIs('category*')"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <i class="fas fa-list mr-2"></i> Category
+                            </x-nav-link>
 
-        <x-nav-link :href="route('job.index')" :active="request()->routeIs('job*')"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-            <i class="fas fa-briefcase mr-2"></i> Job Listing
-        </x-nav-link>
+                            <x-nav-link :href="route('job.index')" :active="request()->routeIs('job*')"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <i class="fas fa-briefcase mr-2"></i> Job Listing
+                            </x-nav-link>
 
-        <x-nav-link :href="route('application.index')" :active="request()->routeIs('application*')"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-            <i class="fas fa-file-alt mr-2"></i> Job Application
-        </x-nav-link>
-    </div>
-</div>
+                            <x-nav-link :href="route('application.index')" :active="request()->routeIs('application*')"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <i class="fas fa-file-alt mr-2"></i> Job Application
+                            </x-nav-link>
+                        </div>
+                    </div>
 
                     <x-nav-link :href="route('contact.index')" :active="request()->routeIs('contact*')">
                         <i class="fas fa-tachometer-alt mr-1"></i> Contact
@@ -132,7 +132,7 @@
 
 
                     <!-- Dropdown for Roles, Permissions, Users -->
-                    {{-- <div class="relative">
+                     <div class="relative">
                         <button @click="open = !open" class="flex items-center space-x-1 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-md">
                             <i class="fas fa-users-cog text-gray-600"></i>
                             <span>Admin Tools</span>
@@ -164,7 +164,7 @@
                             @endcan
 
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
 
