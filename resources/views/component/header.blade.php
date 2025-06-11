@@ -7,7 +7,6 @@
     <meta name="keywords" content="Cybrexus">
     <meta name="description" content="We build a better future with the tech">
 
-    <link rel="icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
 --}}
     {{-- <!-- Bootstrap & Icons -->
