@@ -8,7 +8,7 @@
     <meta content="Cybrexus" name="keywords">
     <meta content="We build a better future with the tech" name="description">
 
-  
+
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,7 +34,7 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-    {{-- <link rel="shortcut icon" type="image/jpg" href="#" /> --}}
+    <link rel="shortcut icon" type="image/jpg" href="{{asset('asset/img/fav-icon.jpg')}}" />
 </head>
 
 <body>
