@@ -50,6 +50,7 @@
 {{--                                           class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">--}}
 {{--                                            ✏️ Edit--}}
 {{--                                        </a>--}}
+                                        @can('delete application')
                                         <form action="{{ route('application.delete', $application->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this application?');">
                                             @csrf
                                             @method('DELETE')
@@ -58,10 +59,13 @@
                                                 🗑️ Delete
                                             </button>
                                         </form>
+                                        @endcan
+                                        @can('view application')
                                         <a href="{{ route('application.show', $application->id) }}"
                                            class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">
                                             <i class="fas fa-eye"></i>️ View
                                         </a>
+                                        @endcan
                                     </div>
                                 </td>
                             </tr>

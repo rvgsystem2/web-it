@@ -2,10 +2,12 @@
     <x-slot name="header">
         <div class="flex justify-between items-center bg-white shadow-md px-6 py-4 rounded-lg">
             <h2 class="font-bold text-2xl text-gray-800">Blog Posts</h2>
+            @can('add blog')
             <a href="{{ route('blogs.create') }}"
                class="px-5 py-2 bg-gradient-to-r from-[#c21108] to-[#000308] text-white font-semibold rounded-lg shadow-md hover:from-[#000308] hover:to-[#c21108] transition">
                 + Add Blog
             </a>
+            @endcan
         </div>
     </x-slot>
 
@@ -45,18 +47,22 @@
                                 </td>
                                 <td class="px-6 py-4 text-center">
                                     <div class="flex justify-center gap-3">
+                                        @can('edit blog')
                                         <a href="{{ route('blogs.edit', $blog->id) }}"
                                            class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">
                                             ✏️ Edit
                                         </a>
-                                        <form action="{{ route('blogs.delete', $blog->id) }}" method="get" onsubmit="return confirm('Are you sure?');">
-                                            @csrf
-                                           
-                                            <button type="submit"
-                                                    class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">
-                                                🗑️ Delete
-                                            </button>
-                                        </form>
+                                        @endcan
+                                            @can('delete blog')
+                                            <form action="{{ route('blogs.delete', $blog->id) }}" method="get" onsubmit="return confirm('Are you sure?');">
+                                                @csrf
+
+                                                <button type="submit"
+                                                        class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">
+                                                    🗑️ Delete
+                                                </button>
+                                            </form>
+                                            @endcan
                                     </div>
                                 </td>
                             </tr>

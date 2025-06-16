@@ -50,10 +50,13 @@
                                 <td class="px-6 py-4 text-gray-600">{{ Str::limit($contact->message, 50) }}</td>
                                 <td class="px-6 py-4 text-center">
                                     <div class="flex justify-center gap-3">
+                                        @can('view contact detail')
                                         <a href="{{ route('contact.show', $contact->id) }}"
                                            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">
                                             👁️ View
                                         </a>
+                                        @endcan
+                                        @can('delete contact')
                                         <form action="{{ route('contact.delete', $contact->id) }}" method="get" onsubmit="return confirm('Are you sure you want to delete this contact?');">
                                             @csrf
                                             <button type="submit"
@@ -61,6 +64,7 @@
                                                 🗑️ Delete
                                             </button>
                                         </form>
+                                            @endcan
                                     </div>
                                 </td>
                             </tr>

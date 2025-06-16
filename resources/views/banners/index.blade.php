@@ -4,10 +4,12 @@
             <h2 class="font-bold text-2xl text-gray-800">
                 {{ __('Banner Management') }}
             </h2>
+            @can('create banner')
             <a href="{{ route('banner.create') }}"
                class="px-5 py-2 bg-gradient-to-r from-[#c21108] to-[#000308] text-white font-semibold rounded-lg shadow-md hover:from-[#000308] hover:to-[#c21108] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#c21108] transition duration-300 ease-in-out">
                 + Create Banner
             </a>
+            @endcan
         </div>
     </x-slot>
 
@@ -59,7 +61,7 @@
                                 <td class="px-6 py-4 text-gray-700">
                                     <form action="{{ route('banner.status', $banner->id) }}" method="POST">
                                         @csrf
-                                        <select name="status" onchange="this.form.submit()"
+                                        <select name="status" onchange="this.form.submit()" @cannot('change banner status') disabled @endcannot
                                                 class="px-2 py-1 border border-gray-300 rounded-md text-sm focus:ring focus:ring-blue-200">
                                             <option value="active" {{ $banner->status === 'active' ? 'selected' : '' }}>Active</option>
                                             <option value="inactive" {{ $banner->status === 'inactive' ? 'selected' : '' }}>Inactive</option>
@@ -70,10 +72,13 @@
 
                                 <td class="px-6 py-4 text-center">
                                     <div class="flex justify-center gap-3">
+                                        @can('edit banner')
                                         <a href="{{ route('banner.edit', $banner->id) }}"
                                            class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">
                                             ✏️ Edit
                                         </a>
+                                        @endcan
+                                        @can('delete banner')
                                         <form action="{{ route('banner.delete', $banner->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
                                             @csrf
                                             <button type="submit"
@@ -81,6 +86,7 @@
                                                 🗑️ Delete
                                             </button>
                                         </form>
+                                        @endcan
                                     </div>
                                 </td>
                             </tr>

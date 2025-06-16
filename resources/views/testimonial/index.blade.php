@@ -2,10 +2,12 @@
     <x-slot name="header">
         <div class="flex justify-between items-center bg-white shadow-md px-6 py-4 rounded-lg">
             <h2 class="font-bold text-2xl text-gray-800">Testimonials</h2>
+            @can('add testimonial')
             <a href="{{ route('testimonials.create') }}"
                class="px-5 py-2 bg-gradient-to-r from-[#c21108] to-[#000308] text-white font-semibold rounded-lg shadow-md hover:from-[#000308] hover:to-[#c21108] transition">
                 + Add Testimonial
             </a>
+            @endcan
         </div>
     </x-slot>
 
@@ -45,19 +47,23 @@
                                 </td>
                                 <td class="px-6 py-4 text-center">
                                     <div class="flex justify-center gap-3">
+                                        @can('edit testimonial')
                                         <a href="{{ route('testimonials.edit', $testimonial->id) }}"
                                            class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">
                                             ✏️ Edit
                                         </a>
+                                        @endcan
+                                        @can('delete testimonial')
                                         <form action="{{ route('testimonials.delete', $testimonial->id) }}" method="get"
                                               onsubmit="return confirm('Are you sure?');">
                                             @csrf
-                                          
+
                                             <button type="submit"
                                                     class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">
                                                 🗑️ Delete
                                             </button>
                                         </form>
+                                        @endcan
                                     </div>
                                 </td>
                             </tr>

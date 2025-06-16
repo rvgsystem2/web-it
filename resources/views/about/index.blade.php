@@ -4,16 +4,18 @@
             <h2 class="font-bold text-2xl text-gray-800">
                 {{ __('About Management') }}
             </h2>
-            <a href="{{ route('about.create') }}" 
+            @can('add about info')
+            <a href="{{ route('about.create') }}"
                class="px-5 py-2 bg-gradient-to-r from-[#c21108] to-[#000308] text-white font-semibold rounded-lg shadow-md hover:from-[#000308] hover:to-[#c21108] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#c21108] transition duration-300 ease-in-out">
                 + Add About Info
             </a>
+            @endcan
         </div>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            
+
             <!-- Success Message -->
             @if (session('success'))
                 <div class="flex items-center bg-green-100 text-green-700 px-4 py-3 rounded-lg mb-6 shadow-md">
@@ -56,10 +58,13 @@
                                     </td>
                                     <td class="px-6 py-4 text-center">
                                         <div class="flex justify-center gap-3">
+                                            @can('edit about info')
                                             <a href="{{ route('about.edit', $about->id) }}"
                                                 class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">
                                                 ✏️ Edit
                                             </a>
+                                            @endcan
+                                            @can('delete about info')
                                             <form action="{{ route('about.delete', $about->id) }}" method="get" onsubmit="return confirm('Are you sure you want to delete this about section?');">
                                                 @csrf
                                                 {{-- @method('DELETE') --}}
@@ -68,6 +73,7 @@
                                                     🗑️ Delete
                                                 </button>
                                             </form>
+                                            @endcan
                                         </div>
                                     </td>
                                 </tr>

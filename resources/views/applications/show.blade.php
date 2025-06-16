@@ -35,7 +35,8 @@
                             @csrf
                             <label class="text-sm text-gray-600 block mb-1" for="status">Status</label>
                             <div class="flex items-center gap-3">
-                                <select name="status" id="status" onchange="this.form.submit()" class="border border-gray-300 rounded px-3 py-2 text-gray-800 focus:ring focus:ring-blue-200 focus:outline-none">
+                                <select name="status" id="status" onchange="this.form.submit()" @cannot('change application status') disabled @endcannot
+                                class="border border-gray-300 rounded px-3 py-2 text-gray-800 focus:ring focus:ring-blue-200 focus:outline-none">
                                     <option value="applied" {{ $application->status === 'applied' ? 'selected' : '' }}>Applied</option>
                                     <option value="shortlisted" {{ $application->status === 'shortlisted' ? 'selected' : '' }}>Shortlisted</option>
                                     <option value="rejected" {{ $application->status === 'rejected' ? 'selected' : '' }}>Rejected</option>
@@ -51,10 +52,11 @@
                         <p class="text-lg font-medium text-gray-900">{{ $application->applied_at->format('Y-m-d H:i A') }}</p>
                     </div>
 
+
                     @if ($application->resume)
                         <div>
                             <p class="text-sm text-gray-600">Resume</p>
-                            <a href="{{ asset('storage/' . $application->resume) }}" target="_blank"
+                            <a @can('view resume') href="{{ asset('storage/' . $application->resume) }}" @endcan target="_blank"
                                class="text-blue-600 hover:underline">📄 View Resume</a>
                         </div>
                     @endif

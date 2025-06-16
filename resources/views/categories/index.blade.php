@@ -4,10 +4,12 @@
             <h2 class="font-bold text-2xl text-gray-800">
                 {{ __('Category Management') }}
             </h2>
+            @can('create category')
             <a href="{{ route('category.create') }}"
                class="px-5 py-2 bg-gradient-to-r from-[#c21108] to-[#000308] text-white font-semibold rounded-lg shadow-md hover:from-[#000308] hover:to-[#c21108] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#c21108] transition duration-300 ease-in-out">
                 + Create Category
             </a>
+            @endcan
         </div>
     </x-slot>
 
@@ -48,10 +50,13 @@
                                 <td class="px-6 py-4 text-gray-600">{{ $category->slug }}</td>
                                 <td class="px-6 py-4 text-center">
                                     <div class="flex justify-center gap-3">
+                                        @can('edit category')
                                         <a href="{{ route('category.edit', $category->id) }}"
                                            class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">
                                             ✏️ Edit
                                         </a>
+                                        @endcan
+                                        @can('delete category')
                                         <form action="{{ route('category.delete', $category->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
                                             @csrf
                                             <button type="submit"
@@ -59,6 +64,7 @@
                                                 🗑️ Delete
                                             </button>
                                         </form>
+                                        @endcan
                                     </div>
                                 </td>
                             </tr>
