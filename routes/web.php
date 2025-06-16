@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\blogController;
 use App\Http\Controllers\ChooseController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\RoleController;
@@ -120,6 +121,33 @@ Route::middleware('auth')->group(function () {
             Route::get('edit/{feature}', 'edit')->name('edit');
             Route::post('update/{feature}', 'update')->name('update');
             Route::get('delete/{feature}', 'delete')->name('delete');
+        });
+
+        Route::prefix('privacy-policy')->name('privacy-policy.')->controller(PrivacyPolicyController::class)->group(function(){
+           Route::get('/', 'index')->name('index');
+           Route::get('create', 'create')->name('create');
+           Route::post('store', 'store')->name('store');
+           Route::get('edit/{policy}', 'edit')->name('edit');
+           Route::post('update/{policy}', 'update')->name('update');
+           Route::post('delete/{policy}', 'delete')->name('delete');
+        });
+
+        Route::controller(\App\Http\Controllers\TermConditionController::class)->name('terms-conditions.')->prefix('terms-conditions')->group(function(){
+           Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('edit/{term}', 'edit')->name('edit');
+            Route::post('update/{term}', 'update')->name('update');
+            Route::post('delete/{term}', 'delete')->name('delete');
+        });
+
+        Route::controller(\App\Http\Controllers\SocialLinkController::class)->name('social-links.')->prefix('social-links')->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('edit/{link}', 'edit')->name('edit');
+            Route::post('update/{link}', 'update')->name('update');
+            Route::post('delete/{link}', 'delete')->name('delete');
         });
 
         // Service

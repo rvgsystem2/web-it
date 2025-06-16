@@ -155,6 +155,27 @@
                                 <i class="fas fa-star mr-2"></i> Choose Features
                             </x-nav-link>
                                 @endcan
+
+                                @can('view privacy policy')
+                                    <x-nav-link :href="route('privacy-policy.index')" :active="request()->routeIs('privacy-policy*')"
+                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        <i class="fas fa-star mr-2"></i> Privacy Policy
+                                    </x-nav-link>
+                                @endcan
+
+                                @can('view terms conditions')
+                                    <x-nav-link :href="route('terms-conditions.index')" :active="request()->routeIs('terms-conditions*')"
+                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        <i class="fas fa-star mr-2"></i> Terms Conditions
+                                    </x-nav-link>
+                                @endcan
+
+                                @can('view social links')
+                                    <x-nav-link :href="route('social-links.index')" :active="request()->routeIs('social-links*')"
+                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        <i class="fas fa-star mr-2"></i> Social Links
+                                    </x-nav-link>
+                                @endcan
                         </div>
                     </div>
                         @endcan

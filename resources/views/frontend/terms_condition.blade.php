@@ -31,6 +31,15 @@
                     </div>
 
 
+                @php
+                    $termsConditions = \App\Models\TermCondition::all();
+                @endphp
+
+                @foreach($termsConditions as $term)
+                    <h2>{{$term->heading}}</h2>
+                    <p>{!! $term->content !!}</p>
+                @endforeach
+
 <p>Welcome to Cybrexus!</p>
 
 <p>These terms and conditions outline the rules and regulations for the use of Cybrexus's Website, located at https://cybrexus.com/.</p>

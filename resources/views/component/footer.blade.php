@@ -31,8 +31,13 @@
                             <i class="bi bi-telephone text-primary me-2"></i>
                             <p class="mb-0">+91 7020893552</p>
                         </div>
+                        @php
+                            $links = \App\Models\SocialLink::all();
+                        @endphp
                         <div class="d-flex mt-4">
-                            <a class="btn btn-primary btn-square me-2" href="https://twitter.com/cybrexustech"><i class="fab fa-twitter fw-normal"></i></a>
+                            @foreach($links as $link)
+                                <a class="btn btn-primary btn-square me-2" href="{{$link->url}}"><i class="{{$link->icon}}"></i></a>
+                            @endforeach
                             <a class="btn btn-primary btn-square me-2" href="https://www.facebook.com/people/Cybrexus/61551280762371/?mibextid=ZbWKwL"><i class="fab fa-facebook-f fw-normal"></i></a>
                             <a class="btn btn-primary btn-square me-2" href="https://www.linkedin.com/company/cybrexus"><i class="fab fa-linkedin-in fw-normal"></i></a>
                             <a class="btn btn-primary btn-square" href="#"><i class="fab fa-instagram fw-normal"></i></a>
