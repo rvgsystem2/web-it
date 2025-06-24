@@ -23,25 +23,24 @@
                 @endif
 
                 <form action="{{ isset($about) ? route('about.update', $about->id) : route('about.store') }}"
-                    method="POST" enctype="multipart/form-data" class="space-y-5">
+                      method="POST" enctype="multipart/form-data" class="space-y-5">
                     @csrf
-                   
 
                     <div>
                         <label class="block text-gray-700 font-medium mb-2">Title</label>
                         <input type="text" name="title"
-                            value="{{ old('title', $about->title ?? '') }}"
-                            class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
-                            placeholder="Enter title">
+                               value="{{ old('title', $about->title ?? '') }}"
+                               class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
+                               placeholder="Enter title">
                     </div>
 
+                    <!-- Description Field -->
                     <div>
                         <label class="block text-gray-700 font-medium mb-2">Description</label>
-                        <textarea name="description" rows="4"
-                            class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
-                            placeholder="Write description...">{{ old('description', $about->description ?? '') }}</textarea>
+                        <textarea name="description" id="editor"
+                                  class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
+                                  placeholder="Write description...">{{ old('description', $about->description ?? '') }}</textarea>
                     </div>
-
                     <div>
                         <label class="block text-gray-700 font-medium mb-2">Image</label>
                         <input type="file" name="image" class="w-full border rounded-lg px-4 py-2">
@@ -54,31 +53,31 @@
                         <div>
                             <label class="block text-gray-700 font-medium mb-2">Feature {{ $i }}</label>
                             <input type="text" name="f_{{ $i }}"
-                                value="{{ old("f_$i", $about?->{"f_$i"} ?? '') }}"
-                                class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
-                                placeholder="Feature {{ $i }}">
+                                   value="{{ old("f_$i", $about?->{"f_$i"} ?? '') }}"
+                                   class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
+                                   placeholder="Feature {{ $i }}">
                         </div>
                     @endfor
 
                     <div>
                         <label class="block text-gray-700 font-medium mb-2">Call To Title</label>
                         <input type="text" name="call_to_title"
-                            value="{{ old('call_to_title', $about->call_to_title ?? '') }}"
-                            class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
-                            placeholder="e.g. Call Us Now">
+                               value="{{ old('call_to_title', $about->call_to_title ?? '') }}"
+                               class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
+                               placeholder="e.g. Call Us Now">
                     </div>
 
                     <div>
                         <label class="block text-gray-700 font-medium mb-2">Call To Number</label>
                         <input type="text" name="call_to_number"
-                            value="{{ old('call_to_number', $about->call_to_number ?? '') }}"
-                            class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
-                            placeholder="e.g. +91-9876543210">
+                               value="{{ old('call_to_number', $about->call_to_number ?? '') }}"
+                               class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
+                               placeholder="e.g. +91-9876543210">
                     </div>
 
                     <div>
                         <button type="submit"
-                            class="px-6 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition">
+                                class="px-6 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition">
                             {{ isset($about) ? 'Update' : 'Submit' }}
                         </button>
                     </div>
@@ -86,4 +85,10 @@
             </div>
         </div>
     </div>
+
+    <!-- Add CKEditor CDN -->
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('editor');
+    </script>
 </x-app-layout>
