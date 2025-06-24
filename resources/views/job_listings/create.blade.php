@@ -35,16 +35,15 @@
                                placeholder="Enter job title" required>
                     </div>
 
-                    <!-- Description -->
+
                     <div>
-                        <label class="block text-gray-700 font-medium mb-2">Job Description</label>
-                        <textarea name="description" rows="4"
+                        <label class="block text-gray-700 font-medium mb-2">Description</label>
+                        <textarea name="description" id="editor" rows="5"
                                   class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
-                                  placeholder="Enter job description" required>{{ old('description', $job->description ?? '') }}</textarea>
+                                  placeholder="Write description...">{{ old('content', $blog->description ?? '') }}</textarea>
                     </div>
 
                     <!-- Skills / Keywords -->
-
                     <div>
                         <label class="block text-gray-700 font-medium mb-2">Skills keyword</label>
                         <textarea name="skills" rows="2"
@@ -151,6 +150,22 @@
                 }
             }
         }
+    </script>
+
+    <!-- Add CKEditor CDN -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                toolbar: [
+                    'heading', '|',
+                    'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
+                    'blockQuote', 'undo', 'redo'
+                ]
+            })
+            .catch(error => {
+                console.error(error);
+            });
     </script>
 
 

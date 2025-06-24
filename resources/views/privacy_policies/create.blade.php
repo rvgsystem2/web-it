@@ -26,6 +26,7 @@
                         </textarea>
                     </div>
 
+
                     <div>
                         <button type="submit"
                                 class="px-6 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition">
@@ -37,13 +38,18 @@
         </div>
     </div>
 
-    <script src="https://cdn.ckeditor.com/4.25.1-lts/standard/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            CKEDITOR.replace('editor', {
-                removePlugins: 'easyimage,cloudservices', // remove cloud-based features
-                height: 300
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                toolbar: [
+                    'heading', '|',
+                    'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
+                    'blockQuote', 'undo', 'redo'
+                ]
+            })
+            .catch(error => {
+                console.error(error);
             });
-        });
     </script>
 </x-app-layout>

@@ -25,7 +25,7 @@
                 <form action="{{ isset($testimonial) ? route('testimonials.update', $testimonial->id) : route('testimonials.store') }}"
                       method="POST" enctype="multipart/form-data" class="space-y-5">
                     @csrf
-                   
+
 
                     <div>
                         <label class="block text-gray-700 font-medium mb-2">Name</label>
@@ -49,6 +49,13 @@
                         <label class="block text-gray-700 font-medium mb-2">Message</label>
                         <textarea name="message" rows="4"
                                   class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200">{{ old('message', $testimonial->message ?? '') }}</textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Message</label>
+                        <textarea name="message" id="editor" rows="5"
+                                  class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
+                                  placeholder="Write message...">{{ old('message', $testimonial->message ?? '') }}</textarea>
                     </div>
 
                     <div>
@@ -80,4 +87,19 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                toolbar: [
+                    'heading', '|',
+                    'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
+                    'blockQuote', 'undo', 'redo'
+                ]
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 </x-app-layout>

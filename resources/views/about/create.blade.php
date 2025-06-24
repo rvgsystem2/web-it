@@ -37,10 +37,11 @@
                     <!-- Description Field -->
                     <div>
                         <label class="block text-gray-700 font-medium mb-2">Description</label>
-                        <textarea name="description" id="editor"
+                        <textarea name="description" id="editor" rows="5"
                                   class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
                                   placeholder="Write description...">{{ old('description', $about->description ?? '') }}</textarea>
                     </div>
+
                     <div>
                         <label class="block text-gray-700 font-medium mb-2">Image</label>
                         <input type="file" name="image" class="w-full border rounded-lg px-4 py-2">
@@ -87,8 +88,19 @@
     </div>
 
     <!-- Add CKEditor CDN -->
-    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
     <script>
-        CKEDITOR.replace('editor');
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                toolbar: [
+                    'heading', '|',
+                    'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
+                    'blockQuote', 'undo', 'redo'
+                ]
+            })
+            .catch(error => {
+                console.error(error);
+            });
     </script>
+
 </x-app-layout>
