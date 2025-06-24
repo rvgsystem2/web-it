@@ -35,14 +35,14 @@
                         <a href="{{route('service')}}" class="nav-link dropdown-toggle {{ request()->is('services*') ? 'active' : '' }}" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown">
                             Services
                         </a>
-                        {{-- <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="{{ route('appdevelopment') }}">App Development</a></li>
-                            <li><a class="dropdown-item" href="{{ route('bussiness_solutiom') }}">Business Solution</a></li>
-                            <li><a class="dropdown-item" href="{{ route('bussiness_process') }}">Business Process</a></li>
-                            <li><a class="dropdown-item" href="{{ route('cyber_security') }}">Cyber Security</a></li>
-                            <li><a class="dropdown-item" href="{{ route('web_development') }}">Web Development</a></li>
-                            <li><a class="dropdown-item" href="{{ route('iande_design') }}">Interior & Exterior Design</a></li>
-                        </ul> --}}
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="#!">App Development</a></li>
+                            <li><a class="dropdown-item" href="#!">Business Solution</a></li>
+                            <li><a class="dropdown-item" href="#!">Business Process</a></li>
+                            <li><a class="dropdown-item" href="#!">Cyber Security</a></li>
+                            <li><a class="dropdown-item" href="#!">Web Development</a></li>
+                            <li><a class="dropdown-item" href="#!">Interior & Exterior Design</a></li>
+                        </ul>
                     </li>
 
                     <li class="nav-item dropdown">
