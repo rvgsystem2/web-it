@@ -77,7 +77,7 @@
 
                         <h1 class="mb-0">{{ $about->title }}</h1>
                     </div>
-                    <p class="mb-4">{{ $about->description }}</p>
+                    <p class="mb-4">{!! $about->description  !!} </p>
                     <div class="row g-0 mb-3">
                         <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
                             <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>{{ $about->f_1 }}</h5>
@@ -109,7 +109,7 @@
             @empty
                 <p>No about information available.</p>
             @endforelse
-           
+
         </div>
     </div>
     <!-- About End -->
@@ -126,7 +126,7 @@
             @empty
                 <p>No choose information available.</p>
             @endforelse
-          
+
             <div class="row g-5">
                 <div class="col-lg-4">
                     @forelse ($choosesFeatures->take(2) as $f)
@@ -138,12 +138,12 @@
                             <h4>{{ $f->title }}</h4>
                             <p class="mb-0">{{ $f->description }}</p>
                         </div>
-                      
+
                     </div>
                     @empty
                         <p>No choose feature information available.</p>
                     @endforelse
-                   
+
                 </div>
                 @forelse ($chooses as $cc)
                       <div class="col-lg-4  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
@@ -154,7 +154,7 @@
                 @empty
                     <p>No choose feature information available.</p>
                 @endforelse
-              
+
                 <div class="col-lg-4">
                     @forelse ($choosesFeatures->skip(2)->take(2) as $f)
                          <div class="row g-5">
@@ -165,7 +165,7 @@
                             <h4>{{ $f->title }}</h4>
                             <p class="mb-0">{{ $f->description }}</p>
                         </div>
-                      
+
                     </div>
                     @empty
                         <p>No choose feature information available.</p>
@@ -185,12 +185,12 @@
                     <h5 class="fw-bold text-primary text-uppercase">{{ $title->title }}</h5>
                     <h1 class="mb-0">{{ $title->sub_title }}</h1>
                 </div>
-           
+
             @empty
                 <p>No service title available.</p>
             @endforelse
-          
-               
+
+
             <div class="row g-5">
                 @forelse ($serviceFeature as $sf)
                       <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
@@ -208,10 +208,10 @@
                 @empty
                     <p>No service feature information available.</p>
                 @endforelse
-             
-           
-               
-             
+
+
+
+
 
             </div>
         </div>
@@ -313,12 +313,12 @@
                     <div class="pt-4 pb-5 px-5">
                         {{ $test->message }}
                     </div>
-                </div>  
+                </div>
                @empty
-                   
+
                @endforelse
-               
-               
+
+
             </div>
         </div>
     </div>
@@ -335,8 +335,8 @@
                     @empty
                         <p>No logos found.</p>
                     @endforelse
-                 
-                    
+
+
                 </div>
             </div>
         </div>
