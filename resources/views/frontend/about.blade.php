@@ -46,9 +46,9 @@
                     <h5 class="fw-bold text-primary text-uppercase">{{ $about->title }}</h5>
                 </div>
                 <p class="mb-4">
-                    {{ $about->description }}
+                    {!! $about->description !!}
                 </p>
-              
+
                 <div class="row g-0 mb-3">
                     <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s"></div>
                     <div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s"></div>
@@ -100,7 +100,7 @@
                 </div>
             </div>
             @endforeach
-           
+
         </div>
     </div>
 </div>
@@ -117,8 +117,8 @@
                     @empty
                         <p>No logos found.</p>
                     @endforelse
-                 
-                    
+
+
                 </div>
             </div>
         </div>
