@@ -163,7 +163,7 @@ public function blogDetails($id)
                 Storage::delete('public/' . $user->resume);
             }
             $resumePath = $request->file('resume')->store('resumes', 'public');
-            $user->resume = $resumePath;
+            $user->resume_link = $resumePath;
         }
 
         // Update user data
