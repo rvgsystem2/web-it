@@ -1,9 +1,21 @@
 @extends('component.main')
+
 @section('content')
 
-    <!-- Profile Header -->
-    <div class="container-fluid py-5 bg-primary text-white text-center">
-        <div class="container">
+    <!-- Profile Header with Image -->
+    <div class="container-fluid mt-5 py-5 bg-primary text-white text-center">
+        <div class="container d-flex flex-column align-items-center justify-content-center">
+            @if(Auth::user()->profile_image)
+                <img src="{{ asset('storage/' . Auth::user()->profile_image) }}"
+                     width="120" height="120"
+                     class="rounded-circle border mb-3 shadow"
+                     alt="Profile Image">
+            @else
+                <div class="bg-light rounded-circle mb-3 d-flex align-items-center justify-content-center"
+                     style="width: 120px; height: 120px;">
+                    <span class="text-dark">No Image</span>
+                </div>
+            @endif
             <h1 class="display-4">My Profile</h1>
             <p class="lead">Update your personal information</p>
         </div>
@@ -22,6 +34,7 @@
             <div class="card-body">
                 <form action="{{ route('userProfile.update', Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
+
                     <!-- Name -->
                     <div class="mb-3">
                         <label for="name" class="form-label">Full Name</label>
@@ -43,31 +56,37 @@
                     <!-- Profile Picture -->
                     <div class="mb-3">
                         <label for="profile_image" class="form-label">Profile Image</label><br>
-                        @if(Auth::user()->profile_image)
-                            <img src="{{ asset('storage/' . Auth::user()->profile_image) }}" width="100" class="mb-2 rounded">
-                        @endif
                         <input type="file" name="profile_image" class="form-control">
                     </div>
 
+                    <!-- Resume -->
                     <div class="mb-3">
-                        <label for="resume" class="form-label">Resume</label><br>
-                        @if(Auth::user()->resume)
-                            <a target="_blank" href="{{ asset('storage/' . Auth::user()->resume) }}" class="mb-2 rounded">Resume</a>
+                        <label for="resume" class="form-label">Resume (PDF/DOC)</label><br>
+                        @if(Auth::user()->resume_link)
+                            <div class="mb-2">
+                                <a href="{{ asset('storage/' . Auth::user()->resume_link) }}" target="_blank" class="btn btn-outline-success">
+                                    <i class="fas fa-file-alt"></i> View Resume
+                                </a>
+                            </div>
+                        @else
+                            <p class="text-muted">No resume uploaded</p>
                         @endif
                         <input type="file" name="resume" class="form-control">
                     </div>
 
                     <!-- Submit Button -->
                     <div class="text-end">
-
                         <button type="submit" class="btn btn-primary px-5">Update</button>
                     </div>
                 </form>
-                <form action="{{route('logout')}}" method="post">
+
+                <!-- Logout Button -->
+                <form action="{{ route('logout') }}" method="post" class="mt-3">
                     @csrf
-                    <button  class="btn btn-danger px-5">Logout</button>
+                    <button class="btn btn-danger px-5">Logout</button>
                 </form>
             </div>
         </div>
     </div>
+
 @endsection
